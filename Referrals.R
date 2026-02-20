@@ -81,7 +81,7 @@ if (file.exists(serviceAccountPath)) {
 # ==============================================================================
 # (1) drive link towards the target sheet
 # ==============================================================================
-targetGSheet <- "https://docs.google.com/spreadsheets/d/1n-DV8baXhZ5wUCYTH2psT0t65yJu8QLKCZk9aK4Eof8/edit?pli=1&gid=0#gid=0"
+targetGSheet <- "https://docs.google.com/spreadsheets/d/1n-DV8baXhZ5wUCYTH2psT0t65yJu8QLKCZk9aK4Eof8"
 masterTab <- "Master"
 partTab <- "Part"
 referralTab <- "Referral"
@@ -91,15 +91,15 @@ factTab <- "Fact"
 # ==============================================================================
 filesToRead <- list(
   list(
-    link = "https://docs.google.com/spreadsheets/d/1mwjmN_COQsYLbrsyZESAp7Ma4LIeHudHIUkvG_dcap8/edit?gid=1480062598#gid=1480062598",
+    link = "https://docs.google.com/spreadsheets/d/1mwjmN_COQsYLbrsyZESAp7Ma4LIeHudHIUkvG_dcap8",
     tab  = "211 calls raw data 1-1-25 to 7-31-25"
   ),
   list(
-    link = "https://docs.google.com/spreadsheets/d/1p5nhmGT4x61AY27NFrYLc11xT-GgyCmIQ5fCh-US-bo/edit?gid=1534204769#gid=1534204769",
+    link = "https://docs.google.com/spreadsheets/d/1p5nhmGT4x61AY27NFrYLc11xT-GgyCmIQ5fCh-US-bo",
     tab  = "All data"
   ),
   list(
-    link = "https://docs.google.com/spreadsheets/d/1YEYwUeogTHiRV97hFtGu1rCKiNOl0Fbi/edit?gid=298707644#gid=298707644",
+    link = "https://docs.google.com/spreadsheets/d/1YEYwUeogTHiRV97hFtGu1rCKiNOl0Fbi",
     tab  = "iCarolExport-CA211VenturaCounty"
   )
 )
