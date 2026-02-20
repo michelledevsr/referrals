@@ -13,6 +13,15 @@ cat("\014") # console
 # ==============================================================================
 # load the necessary packages (install if necessary)
 # ==============================================================================
+
+install.packages("textshaping", type = "source")
+install.packages("ragg", type = "source")
+install.packages("tidyverse")
+install.packages("units", type = "source")
+install.packages("sf", type = "source")
+install.packages("tigris")
+install.packages("tidycensus")
+
 reqpacks <- c("tidyverse",
               "googlesheets4",
               "googledrive",
@@ -42,18 +51,26 @@ for (apack in reqpacks) {
 
 
 # ==============================================================================
-# authorization GSheets
+# Authorization GSheets
 # ==============================================================================
-token <- gargle::token_fetch(
-  scopes = c(
-    "https://www.googleapis.com/auth/drive",
-    "https://www.googleapis.com/auth/spreadsheets"
-  )
-)
 
-# Use that token for both packages
-drive_auth(token = token)
-gs4_auth(token = token)
+serviceAccountPath <- ".secrets/service_account.json"
+
+if (file.exists(serviceAccountPath)) {
+  drive_auth(path = serviceAccountPath)
+  gs4_auth(path = serviceAccountPath)
+} else {
+  token <- gargle::token_fetch(
+    scopes = c(
+      "https://www.googleapis.com/auth/drive",
+      "https://www.googleapis.com/auth/spreadsheets"
+    )
+  )
+  
+  # Use fetched token when service account file is not available
+  drive_auth(token = token)
+  gs4_auth(token = token)
+}
 # ==============================================================================
 
 
