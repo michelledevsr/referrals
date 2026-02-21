@@ -13,16 +13,13 @@ cat("\014") # console
 # ==============================================================================
 # load the necessary packages (install if necessary)
 # ==============================================================================
-
-install.packages("textshaping", type = "source")
-install.packages("ragg", type = "source")
-install.packages("tidyverse")
-install.packages("units", type = "source")
-install.packages("sf", type = "source")
-install.packages("tigris")
-install.packages("tidycensus")
-
 required_packages <- c(
+  "textshaping",
+  "ragg",
+  "units",
+  "sf",
+  "tigris",
+  "tidycensus",
   "tidyverse",
   "googlesheets4",
   "googledrive",
