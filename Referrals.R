@@ -446,15 +446,21 @@ standardize_age <- function(x) {
 }
 
 if ("CityName" %in% names(master_data_frame)) {
-  master_data_frame$CityName <- standardize_title_case(master_data_frame$CityName)
+  master_data_frame$CityName <- standardize_title_case(
+    master_data_frame$CityName
+  )
 }
 
 if ("CountyName" %in% names(master_data_frame)) {
-  master_data_frame$CountyName <- standardize_title_case(master_data_frame$CountyName)
+  master_data_frame$CountyName <- standardize_title_case(
+    master_data_frame$CountyName
+  )
 }
 
 if ("PostalCode" %in% names(master_data_frame)) {
-  master_data_frame$PostalCode <- standardize_postal_code(master_data_frame$PostalCode)
+  master_data_frame$PostalCode <- standardize_postal_code(
+    master_data_frame$PostalCode
+  )
 }
 
 if ("Call.Information...Language.of.Call" %in% names(master_data_frame)) {
@@ -482,7 +488,10 @@ if ("Demographics...Callers.Age" %in% names(master_data_frame)) {
 }
 
 if ("Demographics...Caller.Age" %in% names(master_data_frame)) {
-  caller_age_clean <- standardize_age(master_data_frame$Demographics...Caller.Age)
+  caller_age_clean <- standardize_age(
+    master_data_frame$Demographics...Caller.Age
+  )
+
   if ("Demographics...Callers.Age" %in% names(master_data_frame)) {
     missing_idx <- is.na(master_data_frame$Demographics...Callers.Age)
     master_data_frame$Demographics...Callers.Age[missing_idx] <- caller_age_clean[missing_idx]
@@ -498,6 +507,49 @@ if ("Demographics...Caller.Age" %in% names(master_data_frame)) {
 # ";", extract unique values, create one column per referral,
 # and mark each encounter with "x" in the appropriate referral columns
 # ==============================================================================
+split_referrals_made <- function(x) {
+  x <- normalize_missing_values(x)
+  if (is.na(x)) {
+    return(character(0))
+  }
+
+  values <- unlist(strsplit(x, ";", fixed = TRUE), use.names = FALSE)
+  values <- trimws(values)
+  values <- values[values != ""]
+
+  return(unique(values))
+}
+
+referrals_made_column <- "ReferralsMade"
+
+if (referrals_made_column %in% names(master_data_frame)) {
+  referral_values_per_row <- lapply(
+    master_data_frame[[referrals_made_column]], 
+    split_referrals_made
+  )
+  unique_referral_values <- unique(
+    unlist(referral_values_per_row, use.names = FALSE)
+  )
+
+  # create one indicator column per unique referral value
+  for (referral_value in unique_referral_values) {
+    if (!(referral_value %in% names(master_data_frame))) {
+      master_data_frame[[referral_value]] <- ""
+    }
+  }
+
+  # mark "X" in each referral indicator column for matching rows
+  for (row_idx in seq_len(nrow(master_data_frame))) {
+    row_referrals <- referral_values_per_row[[row_idx]]
+    if (length(row_referrals) == 0) {
+      next
+    }
+
+    for (referral_value in row_referrals) {
+      master_data_frame[[referral_value]][row_idx] <- "X"
+    }
+  }
+}
 
 
 # ==============================================================================
