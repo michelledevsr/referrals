@@ -52,10 +52,14 @@ load_required_packages(required_packages)
 
 service_account_key_path <- ".secrets/service_account.json"
 
-if (file.exists(service_account_key_path)) {
-  drive_auth(path = service_account_key_path)
-  gs4_auth(path = service_account_key_path)
-} else {
+authenticate_google <- function(service_account_path) {
+  if (file.exists(service_account_path)) {
+    drive_auth(path = service_account_path)
+    gs4_auth(path = service_account_path)
+
+    return(invisible(NULL))
+  }
+
   token <- gargle::token_fetch(
     scopes = c(
       "https://www.googleapis.com/auth/drive",
@@ -63,10 +67,11 @@ if (file.exists(service_account_key_path)) {
     )
   )
 
-  # Use fetched token when service account file is not available
   drive_auth(token = token)
   gs4_auth(token = token)
 }
+
+authenticate_google(service_account_key_path)
 # ==============================================================================
 
 
