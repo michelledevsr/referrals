@@ -136,6 +136,7 @@ read_excel_source <- function(link, tab) {
 }
 
 read_source_data_frame <- function(link, tab, mime) {
+  # Dispatch reader based on Drive mime type.
   if (mime == "application/vnd.google-apps.spreadsheet") {
     return(read_google_sheet_source(link, tab))
   }
@@ -306,6 +307,7 @@ consolidate_semantic_duplicates <- function(df) {
 
     for (j in idx[-1]) {
       candidate <- df[[j]]
+      # Fill only missing cells to preserve the first non-empty value found.
       merged_missing <- is.na(merged) | trimws(as.character(merged)) == ""
       candidate_present <- !(is.na(candidate) | trimws(as.character(candidate)) == "")
       take_candidate <- merged_missing & candidate_present
@@ -456,6 +458,7 @@ standardize_master_fields <- function(df) {
     df <- apply_if_exists(df, rule$column, rule$fun)
   }
 
+  # Backfill canonical age column from alternate age field when available.
   if ("Demographics...Caller.Age" %in% names(df)) {
     caller_age_clean <- standardize_age(df$Demographics...Caller.Age)
 
@@ -504,6 +507,7 @@ expand_referral_indicator_columns <- function(master_df, referrals_column) {
     unlist(referral_values_per_row, use.names = FALSE)
   )
 
+  # Create one indicator column per distinct referral value found in data.
   for (referral_value in unique_referral_values) {
     if (!(referral_value %in% names(master_df))) {
       master_df[[referral_value]] <- ""
@@ -717,6 +721,7 @@ to_datetime_from_unix <- function(x) {
 }
 
 pick_first_existing_column <- function(df, candidates) {
+  # Return the first available option to enforce a deterministic priority.
   for (column_name in candidates) {
     if (column_name %in% names(df)) {
       return(column_name)
