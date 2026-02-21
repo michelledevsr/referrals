@@ -5,7 +5,7 @@
 # ==============================================================================
 # clean around
 # ==============================================================================
-rm(list=ls()) # environment
+rm(list = ls()) # environment
 graphics.off() # plotting devices
 cat("\014") # console
 # ==============================================================================
@@ -22,28 +22,30 @@ install.packages("sf", type = "source")
 install.packages("tigris")
 install.packages("tidycensus")
 
-reqpacks <- c("tidyverse",
-              "googlesheets4",
-              "googledrive",
-              "tidyverse",
-              "gsheet",
-              "tidycensus",
-              "data.table",
-              "readxl",
-              "janitor",
-              "cli",
-              "pdftools",
-              "stringr",
-              "purrr", 
-              "httr", 
-              "jsonlite",
-              "stringi",
-              "dplyr"
+required_packages <- c(
+  "tidyverse",
+  "googlesheets4",
+  "googledrive",
+  "tidyverse",
+  "gsheet",
+  "tidycensus",
+  "data.table",
+  "readxl",
+  "janitor",
+  "cli",
+  "pdftools",
+  "stringr",
+  "purrr",
+  "httr",
+  "jsonlite",
+  "stringi",
+  "dplyr"
 )
-for (apack in reqpacks) {
-  if(!suppressWarnings(require(apack, character.only = TRUE))) {
-    install.packages(apack, repos = "http://cran.us.r-project.org")
-    library(apack, character.only = TRUE)
+
+for (package in required_packages) {
+  if (!suppressWarnings(require(package, character.only = TRUE))) {
+    install.packages(package, repos = "http://cran.us.r-project.org")
+    library(package, character.only = TRUE)
   }
 }
 # ==============================================================================
@@ -54,11 +56,11 @@ for (apack in reqpacks) {
 # Authorization GSheets
 # ==============================================================================
 
-serviceAccountPath <- ".secrets/service_account.json"
+service_account_key_path <- ".secrets/service_account.json"
 
-if (file.exists(serviceAccountPath)) {
-  drive_auth(path = serviceAccountPath)
-  gs4_auth(path = serviceAccountPath)
+if (file.exists(service_account_key_path)) {
+  drive_auth(path = service_account_key_path)
+  gs4_auth(path = service_account_key_path)
 } else {
   token <- gargle::token_fetch(
     scopes = c(
@@ -66,7 +68,7 @@ if (file.exists(serviceAccountPath)) {
       "https://www.googleapis.com/auth/spreadsheets"
     )
   )
-  
+
   # Use fetched token when service account file is not available
   drive_auth(token = token)
   gs4_auth(token = token)
@@ -81,93 +83,118 @@ if (file.exists(serviceAccountPath)) {
 # ==============================================================================
 # (1) drive link towards the target sheet
 # ==============================================================================
-targetGSheet <- "https://docs.google.com/spreadsheets/d/1n-DV8baXhZ5wUCYTH2psT0t65yJu8QLKCZk9aK4Eof8"
-masterTab <- "Master"
-partTab <- "Part"
-referralTab <- "Referral"
-factTab <- "Fact"
+google_spreadsheet_url <- "https://docs.google.com/spreadsheets/d/"
+target_gsheet <- paste0(
+  google_spreadsheet_url,
+  "1n-DV8baXhZ5wUCYTH2psT0t65yJu8QLKCZk9aK4Eof8"
+)
+master_tab <- "Master"
+part_tab <- "Part"
+referral_tab <- "Referral"
+fact_tab <- "Fact"
 # ==============================================================================
 # (2) files to read -> link and tab name
 # ==============================================================================
-filesToRead <- list(
+files_to_red <- list(
   list(
-    link = "https://docs.google.com/spreadsheets/d/1mwjmN_COQsYLbrsyZESAp7Ma4LIeHudHIUkvG_dcap8",
+    link = paste0(
+      google_spreadsheet_url,
+      "1mwjmN_COQsYLbrsyZESAp7Ma4LIeHudHIUkvG_dcap8"
+    ),
     tab  = "211 calls raw data 1-1-25 to 7-31-25"
   ),
   list(
-    link = "https://docs.google.com/spreadsheets/d/1p5nhmGT4x61AY27NFrYLc11xT-GgyCmIQ5fCh-US-bo",
+    link = paste0(
+      google_spreadsheet_url,
+      "1p5nhmGT4x61AY27NFrYLc11xT-GgyCmIQ5fCh-US-bo"
+    ),
     tab  = "All data"
   ),
   list(
-    link = "https://docs.google.com/spreadsheets/d/1YEYwUeogTHiRV97hFtGu1rCKiNOl0Fbi",
+    link = paste0(
+      google_spreadsheet_url,
+      "1YEYwUeogTHiRV97hFtGu1rCKiNOl0Fbi"
+    ),
     tab  = "iCarolExport-CA211VenturaCounty"
   )
 )
 
-# ===================================================================================
-# ===================================================================================
-# 0. READ EACH FILE (google sheet or xlsx) and save it inside a list of dataframes
-# ===================================================================================
-# ===================================================================================
-dataList <- list()
-i <- 1
+# ==============================================================================
+# ==============================================================================
+# 0. READ EACH FILE (google sheet or xlsx)
+# and save it inside a list of dataframes
+# ==============================================================================
+# ==============================================================================
+data_list <- list()
+accum <- 1
 
-for (item in filesToRead) {
-  
-  link <- item$link
-  tab  <- item$tab
-  
+for (file in files_to_red) {
+  link <- file$link
+  tab  <- file$tab
   # get file information
-  fileInfo <- drive_get(as_id(link))
-  mime     <- fileInfo$drive_resource[[1]]$mimeType
-  fileName <- fileInfo$name
-  
+  file_info <- drive_get(as_id(link))
+  mime     <- file_info$drive_resource[[1]]$mimeType
+  file_name <- file_info$name
+
   # dataframe name
-  cleanName <- cleanName <- paste0("df", i)
-  
+  clean_name <- clean_name <- paste0("df", accum)
+
   # -------------------------
   # google sheet files
   # -------------------------
   if (mime == "application/vnd.google-apps.spreadsheet") {
-    
-    df <- suppressMessages(read_sheet(as_id(link), sheet = tab, col_names = FALSE))
-    
-    # store dataframe into the list
-    dataList[[cleanName]] <- as.data.frame(df)
-    
-    cli_alert_success(
-      paste("successfully read google sheet:", paste0("\"", substr(fileName, 1, 5), "...\""),
-        "→ tab:", paste0("\"", substr(tab, 1, 5), "...\""), "→ stored as:", cleanName)
+    df <- suppressMessages(
+      read_sheet(
+        as_id(link),
+        sheet = tab,
+        col_names = FALSE
+      )
     )
-    
-    i <- i + 1
+    # store dataframe into the list
+    data_list[[cleanName]] <- as.data.frame(df)
+    cli_alert_success(
+      paste(
+        "successfully read google sheet:",
+        paste0("\"", substr(file_name, 1, 5), "...\""),
+        "→ tab:", paste0("\"", substr(tab, 1, 5), "...\""),
+        "→ stored as:", cleanName
+      )
+    )
+
+    i <- accum + 1
     next
   }
-  
   # -------------------------
   # excel files
   # -------------------------
   if (grepl("xml|sheet|excel|xlsx|xls", mime, ignore.case = TRUE)) {
-    
-    tempFilePath <- tempfile(fileext = ".xlsx")
-    suppressMessages(drive_download(as_id(link), tempFilePath, overwrite = TRUE))
-    
-    df <- suppressMessages(read_excel(tempFilePath, sheet = tab, col_names = FALSE))
-    
-    # store dataframe into the list
-    dataList[[cleanName]] <- as.data.frame(df)
-    
-    cli_alert_success(
-      paste("successfully read google sheet:", paste0("\"", substr(fileName, 1, 5), "...\""),
-            "→ tab:", paste0("\"", substr(tab, 1, 5), "...\""), "→ stored as:", cleanName)
+    temp_file_path <- tempfile(fileext = ".xlsx")
+
+    suppressMessages(
+      drive_download(as_id(link), temp_file_path, overwrite = TRUE)
     )
-    
-    unlink(tempFilePath)
-    
-    i <- i + 1
+
+    df <- suppressMessages(
+      read_excel(temp_file_path, sheet = tab, col_names = FALSE)
+    )
+    # store dataframe into the list
+    data_list[[cleanName]] <- as.data.frame(df)
+
+    cli_alert_success(
+      paste(
+        "successfully read google sheet:", 
+        paste0("\"", substr(file_name, 1, 5), "...\""),
+        "→ tab:", paste0("\"", substr(tab, 1, 5), "...\""), 
+        "→ stored as:", cleanName
+      )
+    )
+
+    unlink(temp_file_path)
+
+    i <- accum + 1
     next
   }
-  
+
   # unrecognized type
   message("unrecognized file type: ", mime)
 }
@@ -184,95 +211,90 @@ for (item in filesToRead) {
 # 1.1 extract the correct headers for each dataset
 # ==============================================================================
 # function which identifies headers and returns the df with the right headers
-detectAndSetHeaders <- function(df) {
+detect_and_set_headers <- function(df) {
   # get the exact number of columns
-  totalCols <- ncol(df)
-  
+  total_cols <- ncol(df)
   # count how many non-empty values exist in each row
-  nonEmptyPerRow <- apply(df, 1, function(x) sum(!is.na(x) & x != ""))
-  
-  # find the first row that has exactly totalCols non-empty values (the header row)
-  headerRow <- which(nonEmptyPerRow == totalCols)[1]
-  
+  non_empty_per_row <- apply(df, 1, function(x) sum(!is.na(x) & x != ""))
+  # find the first row that has exactly total_cols non-empty values
+  header_row <- which(non_empty_per_row == total_cols)[1]
+
   # fail safely if no matching row is found
-  if (is.na(headerRow)) {
+  if (is.na(header_row)) {
     stop("no header row found with the exact expected number of columns.")
   }
-  
+
   # extract headers
-  headerNames <- as.character(unlist(df[headerRow, ], use.names = FALSE))
-  names(df) <- headerNames
-  
+  header_names <- as.character(unlist(df[header_row, ], use.names = FALSE))
+  names(df) <- header_names
   # remove all rows before the header
-  df <- df[-c(1:headerRow), ]
-  
+  df <- df[-c(1:header_row), ]
   # reset row names
   rownames(df) <- NULL
-  
+
   return(df)
 }
 
 # apply header detection to every dataframe in the list
-dataHeadersOk <- lapply(dataList, detectAndSetHeaders)
+data_headers_ok <- lapply(data_list, detect_and_set_headers)
 # ==============================================================================
 
 # ==============================================================================
 # 1.2 clean columns and rows (apply correct date formats)
 # ==============================================================================
-# function which cleans any string: trim spaces, remove BOM, remove control chars
-cleanString <- function(x) {
+# function which cleans any string: trim spaces,
+# remove BOM, remove control chars
+clean_string <- function(x) {
   x <- trimws(x)                    # remove leading/trailing spaces
   x <- gsub("\uFEFF", "", x)        # remove BOM
   x <- gsub("[[:cntrl:]]", "", x)   # remove control/invisible chars
+
   return(x)
 }
 
 # return a clean df
-cleanDataframe <- function(df) {
+clean_data_frame <- function(df) {
   # clean column names
-  names(df) <- cleanString(names(df))
-  
+  names(df) <- clean_string(names(df))
   # clean every cell that is character
   df[] <- lapply(df, function(col) {
     if (is.character(col)) {
-      return(cleanString(col))
+      return(clean_string(col))
     } else {
       return(col)   # do nothing for numeric, dates, etc.
     }
   })
-  
+
   return(df)
 }
 
 # apply dataframe cleaning to every dataframe in the list
-dataCleanOk <- lapply(dataHeadersOk, cleanDataframe)
+data_clean_ok <- lapply(data_headers_ok, clean_data_frame)
 # ==============================================================================
 
 # ==============================================================================
 # 1.3 merge all individual datasets into one master dataframe
 # ==============================================================================
 #  prepare data to be combined
-dataPrepToBeCombined <- lapply(dataCleanOk, function(df) {
-  
+data_prepared_to_be_combined <- lapply(data_clean_ok, function(df) {
   # make column names valid and unique inside each dataframe
   names(df) <- make.names(names(df), unique = TRUE)
-  
   # convert list columns to character to avoid type conflicts in bind_rows()
   df[] <- lapply(df, function(col) {
     if (is.list(col)) as.character(col) else col
   })
-  
+
   return(df)
 })
 
 # merge all dataframes into one master dataframe
-masterDf <- bind_rows(dataPrepToBeCombined)
+master_data_frame <- bind_rows(data_prepared_to_be_combined)
 # ==============================================================================
 
 
 # ==============================================================================
-# 1.4 standardize responses in: CityName, CountyName, PostalCode, 
-# Call Information - Language of Call, Contact Type - # Contact Method, 
+# 1.4 standardize responses in: CityName, CountyName, PostalCode,
+# Call Information - Language of Call, Contact Type - # Contact Method,
 # Demographics - Caller Gender, Demographics - Callers Age)
 # ==============================================================================
 
@@ -299,8 +321,9 @@ masterDf <- bind_rows(dataPrepToBeCombined)
 # ==============================================================================
 
 # ==============================================================================
-# 2.1 create a table with 8 cols -> EnID, Gender, Race, Age, CityName, CountyName,
-# PostalCode, Call Information - Language of Call (retitled -> Language of Call) 
+# 2.1 create a table with 8 cols -> EnID, Gender, Race,
+# Age, CityName, CountyName, PostalCode,
+# Call Information - Language of Call (retitled -> Language of Call)
 # ==============================================================================
 
 # ==============================================================================
@@ -316,15 +339,14 @@ masterDf <- bind_rows(dataPrepToBeCombined)
 # ==============================================================================
 
 # ==============================================================================
-# 3.1 create a table with 4 columns —> EnID, refID, Referral, and Category (generating
-# one row per referral and skipping cases with no referral)
+# 3.1 create a table with 4 columns —> EnID, refID, Referral, and Category
+# (generating one row per referral and skipping cases with no referral)
 # ==============================================================================
 
 # ==============================================================================
 # for the category part:
 # ==============================================================================
-refToCat <- c(
-  
+ref_to_category <- c(
   # Housing & Homelessness Services
   "Affordable Housing" = "Housing & Homelessness Services",
   "Highlands Village Senior Apartments" = "Housing & Homelessness Services",
@@ -449,7 +471,7 @@ refToCat <- c(
   
 )
 
-combinedDf$Category <- refToCat[combinedDf$Referral]
+combinedDf$Category <- ref_to_category[combinedDf$Referral]
 
 
 
@@ -460,8 +482,8 @@ combinedDf$Category <- refToCat[combinedDf$Referral]
 # ==============================================================================
 
 # ==============================================================================
-# 4.1 create a table with 6 cols -> Date, EnID, Narrative, ContactType, partID, refID
-# (each referral has its own row)
+# 4.1 create a table with 6 cols -> Date, EnID, Narrative,
+# ContactType, partID, refID (each referral has its own row)
 # ==============================================================================
 
 
@@ -471,24 +493,24 @@ combinedDf$Category <- refToCat[combinedDf$Referral]
 # ==============================================================================
 # write final MASTER dataset
 sheet_write(finalMasterDf, 
-            ss=targetGSheet,
-            sheet=masterTab)
+            ss=target_gsheet,
+            sheet=master_tab)
 
 # write final PARTICIPANT dataset
 sheet_write(finalPartDf, 
-            ss=targetGSheet,
-            sheet=partTab)
+            ss=target_gsheet,
+            sheet=part_tab)
 
 
 # write final REFERRAL dataset
 sheet_write(finalReferralDf, 
-            ss=targetGSheet,
-            sheet=referralTab)
+            ss=target_gsheet,
+            sheet=referral_tab)
 
 
 # write final FACT dataset
 sheet_write(finalFactDf, 
-            ss=targetGSheet,
-            sheet=factTab)
+            ss=target_gsheet,
+            sheet=fact_tab)
 
 # ==============================================================================
