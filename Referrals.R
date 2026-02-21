@@ -1,6 +1,13 @@
 # ==============================================================================
 # Referrals - Feb 26
 # ==============================================================================
+# Section Index
+# 0. Setup and Inputs
+# 1. Master Dataset
+# 2. Participant Dataset
+# 3. Referral Dataset
+# 4. Fact Dataset
+# 5. Export
 
 # ==============================================================================
 # clean around
@@ -48,7 +55,6 @@ for (package in required_packages) {
 # ==============================================================================
 
 
-
 # ==============================================================================
 # Authorization GSheets
 # ==============================================================================
@@ -73,7 +79,6 @@ if (file.exists(service_account_key_path)) {
 # ==============================================================================
 
 
-
 # ==============================================================================
 # ==============================================================================
 # ****** inputs: (1) and (2) ****
@@ -93,27 +98,27 @@ categories_tab <- "Categ_Ref"
 # ==============================================================================
 # (2) files to read -> link and tab name
 # ==============================================================================
-files_to_red <- list(
+files_to_read <- list(
   list(
     link = paste0(
       google_spreadsheet_url,
       "1mwjmN_COQsYLbrsyZESAp7Ma4LIeHudHIUkvG_dcap8"
     ),
-    tab  = "211 calls raw data 1-1-25 to 7-31-25"
+    tab = "211 calls raw data 1-1-25 to 7-31-25"
   ),
   list(
     link = paste0(
       google_spreadsheet_url,
       "1p5nhmGT4x61AY27NFrYLc11xT-GgyCmIQ5fCh-US-bo"
     ),
-    tab  = "All data"
+    tab = "All data"
   ),
   list(
     link = paste0(
       google_spreadsheet_url,
       "1YEYwUeogTHiRV97hFtGu1rCKiNOl0Fbi"
     ),
-    tab  = "iCarolExport-CA211VenturaCounty"
+    tab = "iCarolExport-CA211VenturaCounty"
   )
 )
 
@@ -126,16 +131,16 @@ files_to_red <- list(
 data_list <- list()
 accum <- 1
 
-for (file in files_to_red) {
+for (file in files_to_read) {
   link <- file$link
-  tab  <- file$tab
+  tab <- file$tab
   # get file information
   file_info <- drive_get(as_id(link))
-  mime     <- file_info$drive_resource[[1]]$mimeType
+  mime <- file_info$drive_resource[[1]]$mimeType
   file_name <- file_info$name
 
   # dataframe name
-  clean_name <- clean_name <- paste0("df", accum)
+  clean_name <- paste0("df", accum)
 
   # -------------------------
   # google sheet files
@@ -149,17 +154,17 @@ for (file in files_to_red) {
       )
     )
     # store dataframe into the list
-    data_list[[cleanName]] <- as.data.frame(df)
+    data_list[[clean_name]] <- as.data.frame(df)
     cli_alert_success(
       paste(
         "successfully read google sheet:",
         paste0("\"", substr(file_name, 1, 5), "...\""),
         "→ tab:", paste0("\"", substr(tab, 1, 5), "...\""),
-        "→ stored as:", cleanName
+        "→ stored as:", clean_name
       )
     )
 
-    i <- accum + 1
+    accum <- accum + 1
     next
   }
   # -------------------------
@@ -176,20 +181,20 @@ for (file in files_to_red) {
       read_excel(temp_file_path, sheet = tab, col_names = FALSE)
     )
     # store dataframe into the list
-    data_list[[cleanName]] <- as.data.frame(df)
+    data_list[[clean_name]] <- as.data.frame(df)
 
     cli_alert_success(
       paste(
-        "successfully read google sheet:", 
+        "successfully read google sheet:",
         paste0("\"", substr(file_name, 1, 5), "...\""),
-        "→ tab:", paste0("\"", substr(tab, 1, 5), "...\""), 
-        "→ stored as:", cleanName
+        "→ tab:", paste0("\"", substr(tab, 1, 5), "...\""),
+        "→ stored as:", clean_name
       )
     )
 
     unlink(temp_file_path)
 
-    i <- accum + 1
+    accum <- accum + 1
     next
   }
 
@@ -243,9 +248,9 @@ data_headers_ok <- lapply(data_list, detect_and_set_headers)
 # function which cleans any string: trim spaces,
 # remove BOM, remove control chars
 clean_string <- function(x) {
-  x <- trimws(x)                    # remove leading/trailing spaces
-  x <- gsub("\uFEFF", "", x)        # remove BOM
-  x <- gsub("[[:cntrl:]]", "", x)   # remove control/invisible chars
+  x <- trimws(x) # remove leading/trailing spaces
+  x <- gsub("\uFEFF", "", x) # remove BOM
+  x <- gsub("[[:cntrl:]]", "", x) # remove control/invisible chars
 
   return(x)
 }
@@ -269,7 +274,7 @@ clean_data_frame <- function(df) {
     if (is.character(col)) {
       return(clean_string(col))
     } else {
-      return(col)   # do nothing for numeric, dates, etc.
+      return(col) # do nothing for numeric, dates, etc.
     }
   })
 
@@ -336,7 +341,7 @@ consolidate_semantic_duplicates <- function(df) {
   }
 
   consolidated_df <- as.data.frame(
-    consolidated, 
+    consolidated,
     stringsAsFactors = FALSE,
     check.names = FALSE
   )
@@ -489,7 +494,6 @@ standardize_master_fields <- function(df) {
 master_data_frame <- standardize_master_fields(master_data_frame)
 
 
-
 # ==============================================================================
 # 1.5 process referrals: for the referralsMade cols split multiple referrals by
 # ";", extract unique values, create one column per referral,
@@ -630,10 +634,12 @@ load_referral_category_map <- function(target_sheet_id, categories_sheet_name) {
   }
 
   category_map <- category_map[
-    !is.na(category_map$Referral) & category_map$Referral != "", , drop = FALSE
+    !is.na(category_map$Referral) & category_map$Referral != "", ,
+    drop = FALSE
   ]
   category_map <- category_map[
-    !duplicated(category_map$Referral), , drop = FALSE
+    !duplicated(category_map$Referral), ,
+    drop = FALSE
   ]
 
   return(category_map)
