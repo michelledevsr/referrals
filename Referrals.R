@@ -549,6 +549,9 @@ master_data_frame$EnID <- seq_len(nrow(master_data_frame))
 master_data_frame <- master_data_frame |>
   dplyr::select(EnID, dplyr::everything())
 
+# keep naming aligned with export section
+final_master_data_frame <- master_data_frame
+
 # ==============================================================================
 # ==============================================================================
 # 2. CREATE PARTICIPANT DATASET
@@ -716,6 +719,112 @@ final_referral_data_frame <- referral_data_frame
 # 4.1 create a table with 6 cols -> Date, EnID, Narrative,
 # ContactType, partID, refID (each referral has its own row)
 # ==============================================================================
+to_datetime_from_unix <- function(x) {
+  x <- normalize_missing_values(x)
+  numeric_value <- suppressWarnings(as.numeric(x))
+  datetime_value <- rep(NA_character_, length(x))
+  valid_idx <- !is.na(numeric_value)
+
+  datetime_value[valid_idx] <- format(
+    as.POSIXct(numeric_value[valid_idx], origin = "1970-01-01", tz = "UTC"),
+    "%Y-%m-%d %H:%M:%S"
+  )
+
+  return(datetime_value)
+}
+
+build_fact_data_frame <- function(referral_df, master_df, participant_df) {
+  if (!all(c("EnID", "RefID") %in% names(referral_df))) {
+    stop("referral_data_frame must include EnID and RefID columns.")
+  }
+
+  date_source_col <- if ("CallDateAndTimeStart" %in% names(master_df)) {
+    "CallDateAndTimeStart"
+  } else if ("CallDateAndTimeEnd" %in% names(master_df)) {
+    "CallDateAndTimeEnd"
+  } else {
+    NA_character_
+  }
+
+  narrative_source_col <- if ("Narrative" %in% names(master_df)) {
+    "Narrative"
+  } else {
+    NA_character_
+  }
+
+  contact_type_source_col <- if (
+    "Contact.Type...Contact.Method" %in% names(master_df)
+  ) {
+    "Contact.Type...Contact.Method"
+  } else if ("Contact.Type...Indicate.type.of.contact" %in% names(master_df)) {
+    "Contact.Type...Indicate.type.of.contact"
+  } else {
+    NA_character_
+  }
+
+  empty_char <- rep(NA_character_, nrow(master_df))
+
+  if (!is.na(date_source_col)) {
+    date_values <- to_datetime_from_unix(master_df[[date_source_col]])
+  } else {
+    date_values <- empty_char
+  }
+
+  if (!is.na(narrative_source_col)) {
+    narrative_values <- normalize_missing_values(
+      master_df[[narrative_source_col]]
+    )
+  } else {
+    narrative_values <- empty_char
+  }
+
+  if (!is.na(contact_type_source_col)) {
+    contact_type_values <- normalize_missing_values(
+      master_df[[contact_type_source_col]]
+    )
+  } else {
+    contact_type_values <- empty_char
+  }
+
+  master_lookup <- data.frame(
+    EnID = master_df$EnID,
+    Date = date_values,
+    Narrative = narrative_values,
+    ContactType = contact_type_values,
+    stringsAsFactors = FALSE
+  )
+
+  master_lookup <- master_lookup |>
+    dplyr::distinct(EnID, .keep_all = TRUE)
+
+  participant_lookup <- participant_df |>
+    dplyr::select(dplyr::all_of(c("EnID", "PartID"))) |>
+    dplyr::distinct(EnID, .keep_all = TRUE)
+
+  fact_columns <- c(
+    "Date",
+    "EnID",
+    "Narrative",
+    "ContactType",
+    "PartID",
+    "RefID"
+  )
+
+  fact_df <- referral_df |>
+    dplyr::left_join(master_lookup, by = "EnID") |>
+    dplyr::left_join(participant_lookup, by = "EnID") |>
+    dplyr::select(dplyr::all_of(fact_columns))
+
+  return(fact_df)
+}
+
+fact_data_frame <- build_fact_data_frame(
+  referral_df = referral_data_frame,
+  master_df = master_data_frame,
+  participant_df = participant_data_frame
+)
+
+final_fact_data_frame <- fact_data_frame
 
 
 
