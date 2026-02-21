@@ -809,32 +809,19 @@ fact_data_frame <- build_fact_data_frame(
 # ==============================================================================
 # 5. EXPORT RESULTS to the target spreadsheet
 # ==============================================================================
-# write final MASTER dataset
-sheet_write(
-  master_data_frame,
-  ss = target_gsheet,
-  sheet = master_tab
+export_targets <- list(
+  list(data = master_data_frame, sheet = master_tab),
+  list(data = participant_data_frame, sheet = part_tab),
+  list(data = referral_data_frame, sheet = referral_tab),
+  list(data = fact_data_frame, sheet = fact_tab)
 )
 
-# write final PARTICIPANT dataset
-sheet_write(
-  participant_data_frame,
-  ss = target_gsheet,
-  sheet = part_tab
-)
-
-# write final REFERRAL dataset
-sheet_write(
-  referral_data_frame,
-  ss = target_gsheet,
-  sheet = referral_tab
-)
-
-# write final FACT dataset
-sheet_write(
-  fact_data_frame,
-  ss = target_gsheet,
-  sheet = fact_tab
-)
+for (target in export_targets) {
+  sheet_write(
+    target$data,
+    ss = target_gsheet,
+    sheet = target$sheet
+  )
+}
 
 # ==============================================================================
