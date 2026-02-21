@@ -21,28 +21,12 @@ cat("\014") # console
 # load the necessary packages (install if necessary)
 # ==============================================================================
 required_packages <- c(
-  "textshaping",
-  "ragg",
-  "units",
-  "sf",
-  "tigris",
-  "tidycensus",
-  "tidyverse",
   "googlesheets4",
   "googledrive",
-  "tidyverse",
-  "gsheet",
-  "tidycensus",
-  "data.table",
   "readxl",
-  "janitor",
+  "writexl",
   "cli",
-  "pdftools",
   "stringr",
-  "purrr",
-  "httr",
-  "jsonlite",
-  "stringi",
   "dplyr"
 )
 
@@ -85,11 +69,7 @@ if (file.exists(service_account_key_path)) {
 # ==============================================================================
 # (1) drive link towards the target sheet
 # ==============================================================================
-google_spreadsheet_url <- "https://docs.google.com/spreadsheets/d/"
-target_gsheet <- paste0(
-  google_spreadsheet_url,
-  "1n-DV8baXhZ5wUCYTH2psT0t65yJu8QLKCZk9aK4Eof8"
-)
+target_gsheet <- "https://docs.google.com/spreadsheets/d/1n-DV8baXhZ5wUCYTH2psT0t65yJu8QLKCZk9aK4Eof8"
 master_tab <- "Master"
 part_tab <- "Part"
 referral_tab <- "Referral"
@@ -100,24 +80,15 @@ categories_tab <- "Categ_Ref"
 # ==============================================================================
 files_to_read <- list(
   list(
-    link = paste0(
-      google_spreadsheet_url,
-      "1mwjmN_COQsYLbrsyZESAp7Ma4LIeHudHIUkvG_dcap8"
-    ),
+    link = "https://docs.google.com/spreadsheets/d/1mwjmN_COQsYLbrsyZESAp7Ma4LIeHudHIUkvG_dcap8",
     tab = "211 calls raw data 1-1-25 to 7-31-25"
   ),
   list(
-    link = paste0(
-      google_spreadsheet_url,
-      "1p5nhmGT4x61AY27NFrYLc11xT-GgyCmIQ5fCh-US-bo"
-    ),
+    link = "https://docs.google.com/spreadsheets/d/1p5nhmGT4x61AY27NFrYLc11xT-GgyCmIQ5fCh-US-bo",
     tab = "All data"
   ),
   list(
-    link = paste0(
-      google_spreadsheet_url,
-      "1YEYwUeogTHiRV97hFtGu1rCKiNOl0Fbi"
-    ),
+    link = "https://docs.google.com/spreadsheets/d/1YEYwUeogTHiRV97hFtGu1rCKiNOl0Fbi",
     tab = "iCarolExport-CA211VenturaCounty"
   )
 )
@@ -619,18 +590,20 @@ participant_data_frame <- participant_data_frame |>
 # for the category part:
 # ==============================================================================
 load_referral_category_map <- function(target_sheet_id, categories_sheet_name) {
-  category_map <- suppressMessages(
-    read_sheet(
+  raw_category_map <- suppressMessages(
+    googlesheets4::read_sheet(
       ss = target_sheet_id,
-      sheet = categories_sheet_name,
-      col_types = "cc"
+      sheet = categories_sheet_name
     )
   )
-  category_map <- as.data.frame(category_map, stringsAsFactors = FALSE)
+  raw_category_map <- as.data.frame(raw_category_map, stringsAsFactors = FALSE)
 
-  required_columns <- c("Referral", "Category")
-  if (!all(required_columns %in% names(category_map))) {
-    stop("referral category map must include Referral and Category columns.")
+  if (all(c("Referral", "Category") %in% names(raw_category_map))) {
+    category_map <- raw_category_map[, c("Referral", "Category"), drop = FALSE]
+  } else {
+    stacked <- stack(raw_category_map)
+    names(stacked) <- c("Referral", "Category")
+    category_map <- stacked
   }
 
   category_map <- category_map[
