@@ -614,132 +614,29 @@ final_participant_data_frame <- participant_data_frame
 # ==============================================================================
 # for the category part:
 # ==============================================================================
-ref_to_category <- c(
-  # Housing & Homelessness Services
-  "Affordable Housing" = "Housing & Homelessness Services",
-  "Highlands Village Senior Apartments" = "Housing & Homelessness Services",
-  "Homeless and Housing Services" = "Housing & Homelessness Services",
-  "Homeless Owner Pet Care" = "Housing & Homelessness Services",
-  "Homeless Shelter" = "Housing & Homelessness Services",
-  "Housing Assistance Program" = "Housing & Homelessness Services",
-  "Housing Choice Voucher Rental Assistance Program" = "Housing & Homelessness Services",
-  "Low-income/Subsidized Housing" = "Housing & Homelessness Services",
-  "Minor Home Repair Program" = "Housing & Homelessness Services",
-  "Home Repair Program" = "Housing & Homelessness Services",
-  "Mobilehome Assistance Center" = "Housing & Homelessness Services",
-  "Familiar Faces Homeless Outreach" = "Housing & Homelessness Services",
-  "Fisher House" = "Housing & Homelessness Services",
-  
-  # Utility & Financial Assistance
-  "Utility Assistance" = "Utility & Financial Assistance",
-  "Low Income Home Energy Assistance Program (LIHEAP)" = "Utility & Financial Assistance",
-  "Weatherization Program" = "Utility & Financial Assistance",
-  "Safety Net Program/The Storm Inconvenience Payment" = "Utility & Financial Assistance",
-  "Self-Sufficiency Grant" = "Utility & Financial Assistance",
-  "General Assistance" = "Utility & Financial Assistance",
-  "CalWORKS" = "Utility & Financial Assistance",
-  "PG&E CARE/FERA Energy Discount Program" = "Utility & Financial Assistance",
-  "PG&E General Power Outage Information" = "Utility & Financial Assistance",
-  "SCE Energy Payment Assistance and Billing Plans" = "Utility & Financial Assistance",
-  "California LifeLine Telephone/Wireless Programs" = "Utility & Financial Assistance",
-  "Access Low Cost Internet" = "Utility & Financial Assistance",
-  "Spectrum Internet Assist" = "Utility & Financial Assistance",
-  
-  # Crisis, Safety & Navigation Services
-  "2-1-1 ALAMEDA COUNTY (CALIFORNIA)" = "Crisis, Safety & Navigation Services",
-  "2-1-1 FINGER LAKES REGION (NEW YORK)" = "Crisis, Safety & Navigation Services",
-  "2-1-1 ORANGE COUNTY (CALIFORNIA)" = "Crisis, Safety & Navigation Services",
-  "2-1-1 STANISLAUS COUNTY (CALIFORNIA)" = "Crisis, Safety & Navigation Services",
-  "2-1-1 VENTURA (CALIFORNIA)" = "Crisis, Safety & Navigation Services",
-  "211 SLO COUNTY (CALIFORNIA)" = "Crisis, Safety & Navigation Services",
-  "211.org" = "Crisis, Safety & Navigation Services",
-  "EASTERN WASHINGTON 2-1-1" = "Crisis, Safety & Navigation Services",
-  "MOUNTAIN VALLEY 211 (CALIFORNIA)" = "Crisis, Safety & Navigation Services",
-  "24/7 Crisis Line" = "Crisis, Safety & Navigation Services",
-  "988 Suicide and Crisis Lifeline" = "Crisis, Safety & Navigation Services",
-  "995 HOPE Hotline" = "Crisis, Safety & Navigation Services",
-  "National Homeless Youth Crisis Hotline" = "Crisis, Safety & Navigation Services",
-  "Safe Place" = "Crisis, Safety & Navigation Services",
-  "Victims of Crime Resource Center" = "Crisis, Safety & Navigation Services",
-  "Child Abuse Reporting" = "Crisis, Safety & Navigation Services",
-  "Police Services" = "Crisis, Safety & Navigation Services",
-  "Sheriff Department" = "Crisis, Safety & Navigation Services",
-  "Clear Lake Area CHP" = "Crisis, Safety & Navigation Services",
-  "City of Stockton Animal Services Unit" = "Crisis, Safety & Navigation Services",
-  "Emergency and Disaster Information" = "Crisis, Safety & Navigation Services",
-  "Animal Poison Control Hotline" = "Crisis, Safety & Navigation Services",
-  "Social Services" = "Crisis, Safety & Navigation Services",
-  "Community Center" = "Crisis, Safety & Navigation Services",
-  "Community Support Services (CSS)" = "Crisis, Safety & Navigation Services",
-  "Enrichment Center" = "Crisis, Safety & Navigation Services",
-  
-  # Aging, Disability & Caregiving Services
-  "Area Agency on Aging" = "Aging, Disability & Caregiving Services",
-  "Area 12 Agency on Aging" = "Aging, Disability & Caregiving Services",
-  "Department of Aging" = "Aging, Disability & Caregiving Services",
-  "Dial-A-Ride" = "Aging, Disability & Caregiving Services",
-  "Disability Disaster Access and Resources (DDAR) Program" = "Aging, Disability & Caregiving Services",
-  "Disability Resource Services" = "Aging, Disability & Caregiving Services",
-  "In-Home Support Program" = "Aging, Disability & Caregiving Services",
-  "In-Home Supportive Services (IHSS)" = "Aging, Disability & Caregiving Services",
-  "Home Caregiver Services" = "Aging, Disability & Caregiving Services",
-  "Adult Protective Services" = "Aging, Disability & Caregiving Services",
-  "Family Caregiver Support Program" = "Aging, Disability & Caregiving Services",
-  "Health Insurance Counseling & Advocacy Program (HICAP)" = "Aging, Disability & Caregiving Services",
-  "Medicare Helpline" = "Aging, Disability & Caregiving Services",
-  "VetFam" = "Aging, Disability & Caregiving Services",
-  
-  # Food Assistance
-  "CalFresh" = "Food Assistance",
-  "All Saints Catholic Parish Food Pantry" = "Food Assistance",
-  "Christian Heights Assembly of God Church Food Pantry" = "Food Assistance",
-  "Groveland Evangelical Free Church Food Pantry" = "Food Assistance",
-  "Interfaith Food Pantry" = "Food Assistance",
-  "Lighthouse Ministries Food Pantry" = "Food Assistance",
-  "Mary Laveroni Community Park Food Pantry" = "Food Assistance",
-  "Nancys Hope Community Center Food Pantry" = "Food Assistance",
-  "Sierra Bible Church Food Pantry" = "Food Assistance",
-  "Tuolumne United Methodist Church Food Pantry" = "Food Assistance",
-  "Holiday Food Baskets" = "Food Assistance",
-  "Adopt a Family" = "Food Assistance",
-  
-  # Health & Behavioral Health
-  "Addiction Support Services" = "Health & Behavioral Health",
-  "Alcohol/Substance Abuse Treatment Program" = "Health & Behavioral Health",
-  "Substance Addiction Education and Prevention" = "Health & Behavioral Health",
-  "Behavioral Health" = "Health & Behavioral Health",
-  "Therapy Referrals" = "Health & Behavioral Health",
-  "Use Disorder and Mental Health Assistance" = "Health & Behavioral Health",
-  "Medi-Cal" = "Health & Behavioral Health",
-  "California Advancing and Innovating Medi-Cal (CalAIM)" = "Health & Behavioral Health",
-  "Medical Education and Referrals" = "Health & Behavioral Health",
-  "Mathiesen Memorial Health Clinic" = "Health & Behavioral Health",
-  "Home Health Care" = "Health & Behavioral Health",
-  "Immunization Clinic" = "Health & Behavioral Health",
-  "Crisis Assessment & Intervention Program" = "Health & Behavioral Health",
-  "Road to Recovery Cancer Patient Services" = "Health & Behavioral Health",
-  "Family PACT" = "Health & Behavioral Health",
-  "National Prevention Information Network (NPIN)" = "Health & Behavioral Health",
-  
-  # Legal Services
-  "Legal Services" = "Legal Services",
-  "Legal Aid Services" = "Legal Services",
-  "Native American Legal Services" = "Legal Services",
-  "Self-Help Center Website" = "Legal Services",
-  "Superior Court Self Help Center" = "Legal Services",
-  "Submit a Complaint" = "Legal Services",
-  "Tenant Rights Hotline" = "Legal Services",
-  "Tenant Protection" = "Legal Services",
-  "Tenant Power Toolkit" = "Legal Services",
-  
-  # Education & Employment Support
-  "Adult Literacy Program" = "Education & Employment Support",
-  "Mother Lode Job Training Services" = "Education & Employment Support",
-  "Child Care Resource and Referral" = "Education & Employment Support"
-  
-)
+load_referral_category_map <- function(map_path = "referral_category_map.csv") {
+  category_map <- read.csv(
+    file = map_path,
+    stringsAsFactors = FALSE,
+    na.strings = c("", "NA")
+  )
 
-combinedDf$Category <- ref_to_category[combinedDf$Referral]
+  required_columns <- c("Referral", "Category")
+  if (!all(required_columns %in% names(category_map))) {
+    stop("referral category map must include Referral and Category columns.")
+  }
+
+  category_map <- category_map |>
+    dplyr::filter(!is.na(Referral), Referral != "") |>
+    dplyr::distinct(Referral, .keep_all = TRUE)
+
+  return(category_map)
+}
+
+referral_category_map <- load_referral_category_map()
+
+combinedDf <- combinedDf |>
+  dplyr::left_join(referral_category_map, by = "Referral")
 
 
 
