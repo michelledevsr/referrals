@@ -716,34 +716,33 @@ to_datetime_from_unix <- function(x) {
   return(datetime_value)
 }
 
+pick_first_existing_column <- function(df, candidates) {
+  for (column_name in candidates) {
+    if (column_name %in% names(df)) {
+      return(column_name)
+    }
+  }
+
+  return(NA_character_)
+}
+
 build_fact_data_frame <- function(referral_df, master_df, participant_df) {
   if (!all(c("EnID", "RefID") %in% names(referral_df))) {
     stop("referral_data_frame must include EnID and RefID columns.")
   }
 
-  date_source_col <- if ("CallDateAndTimeStart" %in% names(master_df)) {
-    "CallDateAndTimeStart"
-  } else if ("CallDateAndTimeEnd" %in% names(master_df)) {
-    "CallDateAndTimeEnd"
-  } else {
-    NA_character_
-  }
-
-  narrative_source_col <- if ("Narrative" %in% names(master_df)) {
-    "Narrative"
-  } else {
-    NA_character_
-  }
-
-  contact_type_source_col <- if (
-    "Contact.Type...Contact.Method" %in% names(master_df)
-  ) {
-    "Contact.Type...Contact.Method"
-  } else if ("Contact.Type...Indicate.type.of.contact" %in% names(master_df)) {
-    "Contact.Type...Indicate.type.of.contact"
-  } else {
-    NA_character_
-  }
+  date_source_col <- pick_first_existing_column(
+    master_df,
+    c("CallDateAndTimeStart", "CallDateAndTimeEnd")
+  )
+  narrative_source_col <- pick_first_existing_column(master_df, c("Narrative"))
+  contact_type_source_col <- pick_first_existing_column(
+    master_df,
+    c(
+      "Contact.Type...Contact.Method",
+      "Contact.Type...Indicate.type.of.contact"
+    )
+  )
 
   empty_char <- rep(NA_character_, nrow(master_df))
 
