@@ -541,6 +541,11 @@ if (referrals_made_column %in% names(master_data_frame)) {
 # ==============================================================================
 # 1.6 add encounter id (EnID): sequential index within the Master table
 # ==============================================================================
+master_data_frame$EnID <- seq_len(nrow(master_data_frame))
+
+# keep EnID as the first column for easier downstream joins
+master_data_frame <- master_data_frame %>%
+  dplyr::select(EnID, dplyr::everything())
 
 
 
