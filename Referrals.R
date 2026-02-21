@@ -549,9 +549,6 @@ master_data_frame$EnID <- seq_len(nrow(master_data_frame))
 master_data_frame <- master_data_frame |>
   dplyr::select(EnID, dplyr::everything())
 
-# keep naming aligned with export section
-final_master_data_frame <- master_data_frame
-
 # ==============================================================================
 # ==============================================================================
 # 2. CREATE PARTICIPANT DATASET
@@ -602,11 +599,6 @@ participant_data_frame$PartID <- seq_len(nrow(participant_data_frame))
 # keep PartID as the first column in participant dataset
 participant_data_frame <- participant_data_frame |>
   dplyr::select(PartID, dplyr::everything())
-
-# keep naming aligned with export section
-final_participant_data_frame <- participant_data_frame
-
-
 
 # ==============================================================================
 # ==============================================================================
@@ -704,10 +696,6 @@ referral_data_frame <- build_referral_data_frame(
   master_df = master_data_frame,
   category_map = referral_category_map
 )
-
-final_referral_data_frame <- referral_data_frame
-
-
 
 # ==============================================================================
 # ==============================================================================
@@ -824,37 +812,33 @@ fact_data_frame <- build_fact_data_frame(
   participant_df = participant_data_frame
 )
 
-final_fact_data_frame <- fact_data_frame
-
-
-
 # ==============================================================================
 # 5. EXPORT RESULTS to the target spreadsheet
 # ==============================================================================
 # write final MASTER dataset
 sheet_write(
-  final_master_data_frame,
+  master_data_frame,
   ss = target_gsheet,
   sheet = master_tab
 )
 
 # write final PARTICIPANT dataset
 sheet_write(
-  final_participant_data_frame,
+  participant_data_frame,
   ss = target_gsheet,
   sheet = part_tab
 )
 
 # write final REFERRAL dataset
 sheet_write(
-  final_referral_data_frame, 
+  referral_data_frame,
   ss = target_gsheet,
   sheet = referral_tab
 )
 
 # write final FACT dataset
 sheet_write(
-  final_fact_data_frame,
+  fact_data_frame,
   ss = target_gsheet,
   sheet = fact_tab
 )
