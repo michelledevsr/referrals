@@ -475,6 +475,40 @@ standardize_master_fields <- function(df) {
 
 master_data_frame <- standardize_master_fields(master_data_frame)
 
+# convert unix timestamps to POSIXct so Google Sheets stores real datetimes
+unix_to_posixct <- function(x, tz = "UTC") {
+  x <- normalize_missing_values(x)
+  numeric_value <- suppressWarnings(as.numeric(x))
+  datetime_value <- as.POSIXct(
+    rep(NA_real_, length(numeric_value)),
+    origin = "1970-01-01",
+    tz = tz
+  )
+  valid_idx <- !is.na(numeric_value)
+  datetime_value[valid_idx] <- as.POSIXct(
+    numeric_value[valid_idx],
+    origin = "1970-01-01",
+    tz = tz
+  )
+
+  return(datetime_value)
+}
+
+standardize_master_datetime_columns <- function(df, column_names) {
+  for (column_name in column_names) {
+    if (column_name %in% names(df)) {
+      df[[column_name]] <- unix_to_posixct(df[[column_name]])
+    }
+  }
+
+  return(df)
+}
+
+master_data_frame <- standardize_master_datetime_columns(
+  master_data_frame,
+  c("CallDateAndTimeStart", "CallDateAndTimeEnd")
+)
+
 
 # ==============================================================================
 # 1.5 process referrals: for the referralsMade cols split multiple referrals by
