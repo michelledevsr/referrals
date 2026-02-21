@@ -491,36 +491,44 @@ split_referrals_made <- function(x) {
   return(unique(values))
 }
 
-referrals_made_column <- "ReferralsMade"
+expand_referral_indicator_columns <- function(master_df, referrals_column) {
+  if (!(referrals_column %in% names(master_df))) {
+    return(master_df)
+  }
 
-if (referrals_made_column %in% names(master_data_frame)) {
   referral_values_per_row <- lapply(
-    master_data_frame[[referrals_made_column]],
+    master_df[[referrals_column]],
     split_referrals_made
   )
   unique_referral_values <- unique(
     unlist(referral_values_per_row, use.names = FALSE)
   )
 
-  # create one indicator column per unique referral value
   for (referral_value in unique_referral_values) {
-    if (!(referral_value %in% names(master_data_frame))) {
-      master_data_frame[[referral_value]] <- ""
+    if (!(referral_value %in% names(master_df))) {
+      master_df[[referral_value]] <- ""
     }
   }
 
-  # mark "X" in each referral indicator column for matching rows
-  for (row_idx in seq_len(nrow(master_data_frame))) {
+  for (row_idx in seq_len(nrow(master_df))) {
     row_referrals <- referral_values_per_row[[row_idx]]
     if (length(row_referrals) == 0) {
       next
     }
 
     for (referral_value in row_referrals) {
-      master_data_frame[[referral_value]][row_idx] <- "X"
+      master_df[[referral_value]][row_idx] <- "X"
     }
   }
+
+  return(master_df)
 }
+
+referrals_made_column <- "ReferralsMade"
+master_data_frame <- expand_referral_indicator_columns(
+  master_df = master_data_frame,
+  referrals_column = referrals_made_column
+)
 
 
 # ==============================================================================
