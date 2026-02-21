@@ -252,10 +252,20 @@ clean_string <- function(x) {
   return(x)
 }
 
+# remove html tags and normalize spacing in column names
+clean_column_name <- function(x) {
+  x <- gsub("<[^>]+>", "", x)
+  x <- gsub("&nbsp;", " ", x, fixed = TRUE)
+  x <- gsub("\\s+", " ", x)
+  x <- trimws(x)
+
+  return(x)
+}
+
 # return a clean df
 clean_data_frame <- function(df) {
   # clean column names
-  names(df) <- clean_string(names(df))
+  names(df) <- clean_column_name(clean_string(names(df)))
   # clean every cell that is character
   df[] <- lapply(df, function(col) {
     if (is.character(col)) {
@@ -275,14 +285,81 @@ data_clean_ok <- lapply(data_headers_ok, clean_data_frame)
 # ==============================================================================
 # 1.3 merge all individual datasets into one master dataframe
 # ==============================================================================
-#  prepare data to be combined
+# normalize known column name variants before combining
+normalize_column_name <- function(x) {
+  x <- trimws(x)
+  # remove vendor prefix present in some exports
+  x <- gsub("^\\[PG&E\\]\\s*", "", x)
+  # align Disaster field variant that includes "Z_"
+  x <- gsub(" - Z_", " - ", x, fixed = TRUE)
+  x <- gsub("\\s+", " ", x)
+  x <- trimws(x)
+
+  return(x)
+}
+
+# explicit mapping for known "similar but not equal" columns
+rename_map <- c(
+  "[PG&E] PSPS Screening-Care Coordination Contact - PSPS Care Coordination-Client Name" =
+    "PSPS Screening-Care Coordination Contact - PSPS Care Coordination-Client Name",
+  "[PG&E] PSPS Screening-Care Coordination Contact - PSPS Care Coordination-Client Phone Number" =
+    "PSPS Screening-Care Coordination Contact - PSPS Care Coordination-Client Phone Number",
+  "[PG&E] PSPS Screening-Care Coordination Contact - PSPS Care Coordination-Client Time of Day" =
+    "PSPS Screening-Care Coordination Contact - PSPS Care Coordination-Client Time of Day"
+)
+
+# merge columns that represent the same field after make.names() adds .1, .2 suffixes
+consolidate_semantic_duplicates <- function(df) {
+  base_names <- sub("\\.[0-9]+$", "", names(df))
+  ordered_base_names <- unique(base_names)
+  consolidated <- vector("list", length(ordered_base_names))
+  names(consolidated) <- ordered_base_names
+
+  for (i in seq_along(ordered_base_names)) {
+    base_name <- ordered_base_names[i]
+    idx <- which(base_names == base_name)
+
+    if (length(idx) == 1) {
+      consolidated[[i]] <- df[[idx]]
+      next
+    }
+
+    merged <- df[[idx[1]]]
+
+    for (j in idx[-1]) {
+      candidate <- df[[j]]
+      merged_missing <- is.na(merged) | trimws(as.character(merged)) == ""
+      candidate_present <- !(is.na(candidate) | trimws(as.character(candidate)) == "")
+      take_candidate <- merged_missing & candidate_present
+      merged[take_candidate] <- candidate[take_candidate]
+    }
+
+    consolidated[[i]] <- merged
+  }
+
+  consolidated_df <- as.data.frame(consolidated, stringsAsFactors = FALSE, check.names = FALSE)
+
+  return(consolidated_df)
+}
+
+# prepare data to be combined
 data_prepared_to_be_combined <- lapply(data_clean_ok, function(df) {
+  # apply explicit rename map before normalization
+  names(df) <- ifelse(
+    names(df) %in% names(rename_map),
+    unname(rename_map[names(df)]),
+    names(df)
+  )
+  # normalize names after mapped replacements
+  names(df) <- vapply(names(df), normalize_column_name, character(1))
   # make column names valid and unique inside each dataframe
   names(df) <- make.names(names(df), unique = TRUE)
   # convert list columns to character to avoid type conflicts in bind_rows()
   df[] <- lapply(df, function(col) {
     if (is.list(col)) as.character(col) else col
   })
+  # consolidate semantic duplicates created by make.names() suffixes
+  df <- consolidate_semantic_duplicates(df)
 
   return(df)
 })
@@ -297,6 +374,122 @@ master_data_frame <- bind_rows(data_prepared_to_be_combined)
 # Call Information - Language of Call, Contact Type - # Contact Method,
 # Demographics - Caller Gender, Demographics - Callers Age)
 # ==============================================================================
+normalize_missing_values <- function(x) {
+  x <- trimws(as.character(x))
+  x[x %in% c("", "NULL", "N/A", "NA", "na", "null", "Unknown")] <- NA
+
+  return(x)
+}
+
+standardize_title_case <- function(x) {
+  x <- normalize_missing_values(x)
+  x <- tolower(x)
+  x <- tools::toTitleCase(x)
+
+  return(x)
+}
+
+standardize_postal_code <- function(x) {
+  x <- normalize_missing_values(x)
+  x <- gsub("\\.0$", "", x)
+  x <- stringr::str_extract(x, "\\b\\d{5}\\b")
+
+  return(x)
+}
+
+standardize_language_of_call <- function(x) {
+  x <- normalize_missing_values(x)
+  x_lower <- tolower(x)
+
+  x[x_lower %in% c("english", "eng", "en")] <- "English"
+  x[x_lower %in% c("spanish", "espanol", "español", "spa", "es")] <- "Spanish"
+
+  other_idx <- !is.na(x) & !(x %in% c("English", "Spanish"))
+  x[other_idx] <- "Other"
+
+  return(x)
+}
+
+standardize_contact_method <- function(x) {
+  x <- normalize_missing_values(x)
+  x_lower <- tolower(x)
+
+  x[grepl("phone|call", x_lower)] <- "Phone"
+  x[grepl("text|sms", x_lower)] <- "Text"
+  x[grepl("email", x_lower)] <- "Email"
+  x[grepl("chat", x_lower)] <- "Chat"
+  x[grepl("web|online", x_lower)] <- "Web"
+
+  return(x)
+}
+
+standardize_gender <- function(x) {
+  x <- normalize_missing_values(x)
+  x_lower <- tolower(x)
+
+  x[x_lower %in% c("female", "f")] <- "Female"
+  x[x_lower %in% c("male", "m")] <- "Male"
+  x[grepl("trans", x_lower)] <- "Transgender"
+  x[grepl("non-binary|nonbinary|genderqueer", x_lower)] <- "Non-binary"
+  x[x_lower %in% c("decline to answer", "declined to answer", "prefer not to answer")] <- "Declined"
+  x[x_lower %in% c("other")] <- "Other"
+
+  return(x)
+}
+
+standardize_age <- function(x) {
+  x <- normalize_missing_values(x)
+  x <- suppressWarnings(as.numeric(x))
+  x[x < 0 | x > 120] <- NA
+
+  return(x)
+}
+
+if ("CityName" %in% names(master_data_frame)) {
+  master_data_frame$CityName <- standardize_title_case(master_data_frame$CityName)
+}
+
+if ("CountyName" %in% names(master_data_frame)) {
+  master_data_frame$CountyName <- standardize_title_case(master_data_frame$CountyName)
+}
+
+if ("PostalCode" %in% names(master_data_frame)) {
+  master_data_frame$PostalCode <- standardize_postal_code(master_data_frame$PostalCode)
+}
+
+if ("Call.Information...Language.of.Call" %in% names(master_data_frame)) {
+  master_data_frame$Call.Information...Language.of.Call <- standardize_language_of_call(
+    master_data_frame$Call.Information...Language.of.Call
+  )
+}
+
+if ("Contact.Type...Contact.Method" %in% names(master_data_frame)) {
+  master_data_frame$Contact.Type...Contact.Method <- standardize_contact_method(
+    master_data_frame$Contact.Type...Contact.Method
+  )
+}
+
+if ("Demographics...Caller.Gender" %in% names(master_data_frame)) {
+  master_data_frame$Demographics...Caller.Gender <- standardize_gender(
+    master_data_frame$Demographics...Caller.Gender
+  )
+}
+
+if ("Demographics...Callers.Age" %in% names(master_data_frame)) {
+  master_data_frame$Demographics...Callers.Age <- standardize_age(
+    master_data_frame$Demographics...Callers.Age
+  )
+}
+
+if ("Demographics...Caller.Age" %in% names(master_data_frame)) {
+  caller_age_clean <- standardize_age(master_data_frame$Demographics...Caller.Age)
+  if ("Demographics...Callers.Age" %in% names(master_data_frame)) {
+    missing_idx <- is.na(master_data_frame$Demographics...Callers.Age)
+    master_data_frame$Demographics...Callers.Age[missing_idx] <- caller_age_clean[missing_idx]
+  } else {
+    master_data_frame$Demographics...Callers.Age <- caller_age_clean
+  }
+}
 
 
 
