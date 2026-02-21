@@ -445,60 +445,46 @@ standardize_age <- function(x) {
   return(x)
 }
 
-if ("CityName" %in% names(master_data_frame)) {
-  master_data_frame$CityName <- standardize_title_case(
-    master_data_frame$CityName
-  )
-}
+standardize_master_fields <- function(df) {
+  apply_if_exists <- function(data_frame, column_name, standardize_fun) {
+    if (column_name %in% names(data_frame)) {
+      data_frame[[column_name]] <- standardize_fun(data_frame[[column_name]])
+    }
 
-if ("CountyName" %in% names(master_data_frame)) {
-  master_data_frame$CountyName <- standardize_title_case(
-    master_data_frame$CountyName
-  )
-}
-
-if ("PostalCode" %in% names(master_data_frame)) {
-  master_data_frame$PostalCode <- standardize_postal_code(
-    master_data_frame$PostalCode
-  )
-}
-
-if ("Call.Information...Language.of.Call" %in% names(master_data_frame)) {
-  master_data_frame$Call.Information...Language.of.Call <- standardize_language_of_call(
-    master_data_frame$Call.Information...Language.of.Call
-  )
-}
-
-if ("Contact.Type...Contact.Method" %in% names(master_data_frame)) {
-  master_data_frame$Contact.Type...Contact.Method <- standardize_contact_method(
-    master_data_frame$Contact.Type...Contact.Method
-  )
-}
-
-if ("Demographics...Caller.Gender" %in% names(master_data_frame)) {
-  master_data_frame$Demographics...Caller.Gender <- standardize_gender(
-    master_data_frame$Demographics...Caller.Gender
-  )
-}
-
-if ("Demographics...Callers.Age" %in% names(master_data_frame)) {
-  master_data_frame$Demographics...Callers.Age <- standardize_age(
-    master_data_frame$Demographics...Callers.Age
-  )
-}
-
-if ("Demographics...Caller.Age" %in% names(master_data_frame)) {
-  caller_age_clean <- standardize_age(
-    master_data_frame$Demographics...Caller.Age
-  )
-
-  if ("Demographics...Callers.Age" %in% names(master_data_frame)) {
-    missing_idx <- is.na(master_data_frame$Demographics...Callers.Age)
-    master_data_frame$Demographics...Callers.Age[missing_idx] <- caller_age_clean[missing_idx]
-  } else {
-    master_data_frame$Demographics...Callers.Age <- caller_age_clean
+    return(data_frame)
   }
+
+  df <- apply_if_exists(df, "CityName", standardize_title_case)
+  df <- apply_if_exists(df, "CountyName", standardize_title_case)
+  df <- apply_if_exists(df, "PostalCode", standardize_postal_code)
+  df <- apply_if_exists(
+    df,
+    "Call.Information...Language.of.Call",
+    standardize_language_of_call
+  )
+  df <- apply_if_exists(
+    df,
+    "Contact.Type...Contact.Method",
+    standardize_contact_method
+  )
+  df <- apply_if_exists(df, "Demographics...Caller.Gender", standardize_gender)
+  df <- apply_if_exists(df, "Demographics...Callers.Age", standardize_age)
+
+  if ("Demographics...Caller.Age" %in% names(df)) {
+    caller_age_clean <- standardize_age(df$Demographics...Caller.Age)
+
+    if ("Demographics...Callers.Age" %in% names(df)) {
+      missing_idx <- is.na(df$Demographics...Callers.Age)
+      df$Demographics...Callers.Age[missing_idx] <- caller_age_clean[missing_idx]
+    } else {
+      df$Demographics...Callers.Age <- caller_age_clean
+    }
+  }
+
+  return(df)
 }
+
+master_data_frame <- standardize_master_fields(master_data_frame)
 
 
 
@@ -524,7 +510,7 @@ referrals_made_column <- "ReferralsMade"
 
 if (referrals_made_column %in% names(master_data_frame)) {
   referral_values_per_row <- lapply(
-    master_data_frame[[referrals_made_column]], 
+    master_data_frame[[referrals_made_column]],
     split_referrals_made
   )
   unique_referral_values <- unique(
