@@ -89,6 +89,7 @@ master_tab <- "Master"
 part_tab <- "Part"
 referral_tab <- "Referral"
 fact_tab <- "Fact"
+categories_tab <- "Categ_Ref"
 # ==============================================================================
 # (2) files to read -> link and tab name
 # ==============================================================================
@@ -334,7 +335,11 @@ consolidate_semantic_duplicates <- function(df) {
     consolidated[[i]] <- merged
   }
 
-  consolidated_df <- as.data.frame(consolidated, stringsAsFactors = FALSE, check.names = FALSE)
+  consolidated_df <- as.data.frame(
+    consolidated, 
+    stringsAsFactors = FALSE,
+    check.names = FALSE
+  )
 
   return(consolidated_df)
 }
@@ -614,29 +619,90 @@ final_participant_data_frame <- participant_data_frame
 # ==============================================================================
 # for the category part:
 # ==============================================================================
-load_referral_category_map <- function(map_path = "referral_category_map.csv") {
-  category_map <- read.csv(
-    file = map_path,
-    stringsAsFactors = FALSE,
-    na.strings = c("", "NA")
+load_referral_category_map <- function(target_sheet_id, categories_sheet_name) {
+  category_map <- suppressMessages(
+    read_sheet(
+      ss = target_sheet_id,
+      sheet = categories_sheet_name,
+      col_types = "cc"
+    )
   )
+  category_map <- as.data.frame(category_map, stringsAsFactors = FALSE)
 
   required_columns <- c("Referral", "Category")
   if (!all(required_columns %in% names(category_map))) {
     stop("referral category map must include Referral and Category columns.")
   }
 
-  category_map <- category_map |>
-    dplyr::filter(!is.na(Referral), Referral != "") |>
-    dplyr::distinct(Referral, .keep_all = TRUE)
+  category_map <- category_map[
+    !is.na(category_map$Referral) & category_map$Referral != "", , drop = FALSE
+  ]
+  category_map <- category_map[
+    !duplicated(category_map$Referral), , drop = FALSE
+  ]
 
   return(category_map)
 }
 
-referral_category_map <- load_referral_category_map()
+referral_category_map <- load_referral_category_map(
+  target_sheet_id = target_gsheet,
+  categories_sheet_name = categories_tab
+)
 
-combinedDf <- combinedDf |>
-  dplyr::left_join(referral_category_map, by = "Referral")
+build_referral_data_frame <- function(master_df, category_map) {
+  required_master_columns <- c("EnID", "ReferralsMade")
+  if (!all(required_master_columns %in% names(master_df))) {
+    stop("master_data_frame must include EnID and ReferralsMade columns.")
+  }
+
+  referral_rows <- lapply(seq_len(nrow(master_df)), function(row_idx) {
+    referral_values <- split_referrals_made(master_df$ReferralsMade[row_idx])
+    if (length(referral_values) == 0) {
+      return(NULL)
+    }
+
+    data.frame(
+      EnID = rep(master_df$EnID[row_idx], length(referral_values)),
+      Referral = referral_values,
+      stringsAsFactors = FALSE
+    )
+  })
+
+  referral_df <- dplyr::bind_rows(referral_rows)
+
+  if (nrow(referral_df) == 0) {
+    empty_referral_df <- data.frame(
+      EnID = integer(0),
+      RefID = integer(0),
+      Referral = character(0),
+      Category = character(0),
+      stringsAsFactors = FALSE
+    )
+
+    return(empty_referral_df)
+  }
+
+  referral_df <- referral_df |>
+    dplyr::left_join(category_map, by = "Referral")
+
+  # use explicit placeholder when category mapping is missing
+  missing_category <- is.na(referral_df$Category) | referral_df$Category == ""
+  referral_df$Category[missing_category] <- "--"
+
+  referral_df$RefID <- seq_len(nrow(referral_df))
+
+  referral_df <- referral_df |>
+    dplyr::select(dplyr::all_of(c("EnID", "RefID", "Referral", "Category")))
+
+  return(referral_df)
+}
+
+referral_data_frame <- build_referral_data_frame(
+  master_df = master_data_frame,
+  category_map = referral_category_map
+)
+
+final_referral_data_frame <- referral_data_frame
 
 
 
