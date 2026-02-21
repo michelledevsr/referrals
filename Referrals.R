@@ -33,12 +33,16 @@ required_packages <- c(
   "dplyr"
 )
 
-for (package in required_packages) {
-  if (!suppressWarnings(require(package, character.only = TRUE))) {
-    install.packages(package, repos = "http://cran.us.r-project.org")
-    library(package, character.only = TRUE)
+load_required_packages <- function(packages) {
+  for (pkg in packages) {
+    if (!suppressWarnings(require(pkg, character.only = TRUE))) {
+      install.packages(pkg, repos = "http://cran.us.r-project.org")
+      library(pkg, character.only = TRUE)
+    }
   }
 }
+
+load_required_packages(required_packages)
 # ==============================================================================
 
 
