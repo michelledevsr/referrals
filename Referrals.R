@@ -436,21 +436,25 @@ standardize_master_fields <- function(df) {
     return(data_frame)
   }
 
-  df <- apply_if_exists(df, "CityName", standardize_title_case)
-  df <- apply_if_exists(df, "CountyName", standardize_title_case)
-  df <- apply_if_exists(df, "PostalCode", standardize_postal_code)
-  df <- apply_if_exists(
-    df,
-    "Call.Information...Language.of.Call",
-    standardize_language_of_call
+  standardization_rules <- list(
+    list(column = "CityName", fun = standardize_title_case),
+    list(column = "CountyName", fun = standardize_title_case),
+    list(column = "PostalCode", fun = standardize_postal_code),
+    list(
+      column = "Call.Information...Language.of.Call",
+      fun = standardize_language_of_call
+    ),
+    list(
+      column = "Contact.Type...Contact.Method",
+      fun = standardize_contact_method
+    ),
+    list(column = "Demographics...Caller.Gender", fun = standardize_gender),
+    list(column = "Demographics...Callers.Age", fun = standardize_age)
   )
-  df <- apply_if_exists(
-    df,
-    "Contact.Type...Contact.Method",
-    standardize_contact_method
-  )
-  df <- apply_if_exists(df, "Demographics...Caller.Gender", standardize_gender)
-  df <- apply_if_exists(df, "Demographics...Callers.Age", standardize_age)
+
+  for (rule in standardization_rules) {
+    df <- apply_if_exists(df, rule$column, rule$fun)
+  }
 
   if ("Demographics...Caller.Age" %in% names(df)) {
     caller_age_clean <- standardize_age(df$Demographics...Caller.Age)
