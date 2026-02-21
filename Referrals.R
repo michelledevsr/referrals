@@ -1,7 +1,7 @@
 # ==============================================================================
-# Referrals - Feb 26
+# REFERRALS ETL SCRIPT
 # ==============================================================================
-# Section Index
+# Section index:
 # 0. Setup and Inputs
 # 1. Master Dataset
 # 2. Participant Dataset
@@ -10,7 +10,7 @@
 # 5. Export
 
 # ==============================================================================
-# clean around
+# Session Cleanup
 # ==============================================================================
 rm(list = ls()) # environment
 graphics.off() # plotting devices
@@ -18,13 +18,12 @@ cat("\014") # console
 # ==============================================================================
 
 # ==============================================================================
-# load the necessary packages (install if necessary)
+# Package Loading
 # ==============================================================================
 required_packages <- c(
   "googlesheets4",
   "googledrive",
   "readxl",
-  "writexl",
   "cli",
   "stringr",
   "dplyr"
@@ -40,7 +39,7 @@ for (package in required_packages) {
 
 
 # ==============================================================================
-# Authorization GSheets
+# Google Authentication
 # ==============================================================================
 
 service_account_key_path <- ".secrets/service_account.json"
@@ -64,20 +63,16 @@ if (file.exists(service_account_key_path)) {
 
 
 # ==============================================================================
+# 0. Setup and Inputs
 # ==============================================================================
-# ****** inputs: (1) and (2) ****
-# ==============================================================================
-# (1) drive link towards the target sheet
-# ==============================================================================
+# (1) Target spreadsheet and destination tabs
 target_gsheet <- "https://docs.google.com/spreadsheets/d/1n-DV8baXhZ5wUCYTH2psT0t65yJu8QLKCZk9aK4Eof8"
 master_tab <- "Master"
 part_tab <- "Part"
 referral_tab <- "Referral"
 fact_tab <- "Fact"
 categories_tab <- "Categ_Ref"
-# ==============================================================================
-# (2) files to read -> link and tab name
-# ==============================================================================
+# (2) Source files to read (link and tab name)
 files_to_read <- list(
   list(
     link = "https://docs.google.com/spreadsheets/d/1mwjmN_COQsYLbrsyZESAp7Ma4LIeHudHIUkvG_dcap8",
@@ -94,10 +89,8 @@ files_to_read <- list(
 )
 
 # ==============================================================================
-# ==============================================================================
-# 0. READ EACH FILE (google sheet or xlsx)
-# and save it inside a list of dataframes
-# ==============================================================================
+# 0. Read Source Files
+# Read each source (Google Sheets or XLSX) and store each table in `data_list`.
 # ==============================================================================
 data_list <- list()
 accum <- 1
