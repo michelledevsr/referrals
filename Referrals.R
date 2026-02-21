@@ -108,75 +108,73 @@ files_to_read <- list(
 data_list <- list()
 accum <- 1
 
+read_google_sheet_source <- function(link, tab) {
+  df <- suppressMessages(
+    read_sheet(
+      as_id(link),
+      sheet = tab,
+      col_names = FALSE
+    )
+  )
+
+  return(as.data.frame(df))
+}
+
+read_excel_source <- function(link, tab) {
+  temp_file_path <- tempfile(fileext = ".xlsx")
+  on.exit(unlink(temp_file_path), add = TRUE)
+
+  suppressMessages(
+    drive_download(as_id(link), temp_file_path, overwrite = TRUE)
+  )
+
+  df <- suppressMessages(
+    read_excel(temp_file_path, sheet = tab, col_names = FALSE)
+  )
+
+  return(as.data.frame(df))
+}
+
+read_source_data_frame <- function(link, tab, mime) {
+  if (mime == "application/vnd.google-apps.spreadsheet") {
+    return(read_google_sheet_source(link, tab))
+  }
+
+  if (grepl("xml|sheet|excel|xlsx|xls", mime, ignore.case = TRUE)) {
+    return(read_excel_source(link, tab))
+  }
+
+  return(NULL)
+}
+
+format_read_success_message <- function(file_name, tab, clean_name) {
+  message <- paste(
+    "successfully read google sheet:",
+    paste0("\"", substr(file_name, 1, 5), "...\""),
+    "→ tab:", paste0("\"", substr(tab, 1, 5), "...\""),
+    "→ stored as:", clean_name
+  )
+
+  return(message)
+}
+
 for (file in files_to_read) {
   link <- file$link
   tab <- file$tab
-  # get file information
   file_info <- drive_get(as_id(link))
   mime <- file_info$drive_resource[[1]]$mimeType
   file_name <- file_info$name
-
-  # dataframe name
   clean_name <- paste0("df", accum)
+  source_df <- read_source_data_frame(link, tab, mime)
 
-  # -------------------------
-  # google sheet files
-  # -------------------------
-  if (mime == "application/vnd.google-apps.spreadsheet") {
-    df <- suppressMessages(
-      read_sheet(
-        as_id(link),
-        sheet = tab,
-        col_names = FALSE
-      )
-    )
-    # store dataframe into the list
-    data_list[[clean_name]] <- as.data.frame(df)
-    cli_alert_success(
-      paste(
-        "successfully read google sheet:",
-        paste0("\"", substr(file_name, 1, 5), "...\""),
-        "→ tab:", paste0("\"", substr(tab, 1, 5), "...\""),
-        "→ stored as:", clean_name
-      )
-    )
-
-    accum <- accum + 1
-    next
-  }
-  # -------------------------
-  # excel files
-  # -------------------------
-  if (grepl("xml|sheet|excel|xlsx|xls", mime, ignore.case = TRUE)) {
-    temp_file_path <- tempfile(fileext = ".xlsx")
-
-    suppressMessages(
-      drive_download(as_id(link), temp_file_path, overwrite = TRUE)
-    )
-
-    df <- suppressMessages(
-      read_excel(temp_file_path, sheet = tab, col_names = FALSE)
-    )
-    # store dataframe into the list
-    data_list[[clean_name]] <- as.data.frame(df)
-
-    cli_alert_success(
-      paste(
-        "successfully read google sheet:",
-        paste0("\"", substr(file_name, 1, 5), "...\""),
-        "→ tab:", paste0("\"", substr(tab, 1, 5), "...\""),
-        "→ stored as:", clean_name
-      )
-    )
-
-    unlink(temp_file_path)
-
-    accum <- accum + 1
+  if (is.null(source_df)) {
+    message("unrecognized file type: ", mime)
     next
   }
 
-  # unrecognized type
-  message("unrecognized file type: ", mime)
+  data_list[[clean_name]] <- source_df
+  cli_alert_success(format_read_success_message(file_name, tab, clean_name))
+  accum <- accum + 1
 }
 # ==============================================================================
 
