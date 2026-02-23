@@ -358,7 +358,7 @@ master_data_frame <- bind_rows(data_prepared_to_be_combined)
 # Call Information - Language of Call, Contact Type - # Contact Method,
 # Demographics - Caller Gender, Demographics - Callers Age)
 # ==============================================================================
-normalize_missing_values <- function(x) {
+standarize_missing_values <- function(x) {
   x <- trimws(as.character(x))
   x[x %in% c("", "NULL", "N/A", "NA", "na", "null", "Unknown")] <- NA
 
@@ -366,7 +366,7 @@ normalize_missing_values <- function(x) {
 }
 
 standardize_title_case <- function(x) {
-  x <- normalize_missing_values(x)
+  x <- standarize_missing_values(x)
   x <- tolower(x)
   x <- tools::toTitleCase(x)
 
@@ -374,7 +374,7 @@ standardize_title_case <- function(x) {
 }
 
 standardize_postal_code <- function(x) {
-  x <- normalize_missing_values(x)
+  x <- standarize_missing_values(x)
   x <- gsub("\\.0$", "", x)
   x <- stringr::str_extract(x, "\\b\\d{5}\\b")
 
@@ -382,7 +382,7 @@ standardize_postal_code <- function(x) {
 }
 
 standardize_language_of_call <- function(x) {
-  x <- normalize_missing_values(x)
+  x <- standarize_missing_values(x)
   x_lower <- tolower(x)
 
   x[x_lower %in% c("english", "eng", "en")] <- "English"
@@ -395,7 +395,7 @@ standardize_language_of_call <- function(x) {
 }
 
 standardize_contact_method <- function(x) {
-  x <- normalize_missing_values(x)
+  x <- standarize_missing_values(x)
   x_lower <- tolower(x)
 
   x[grepl("phone|call", x_lower)] <- "Phone"
@@ -408,7 +408,7 @@ standardize_contact_method <- function(x) {
 }
 
 standardize_gender <- function(x) {
-  x <- normalize_missing_values(x)
+  x <- standarize_missing_values(x)
   x_lower <- tolower(x)
 
   x[x_lower %in% c("female", "f")] <- "Female"
@@ -422,7 +422,7 @@ standardize_gender <- function(x) {
 }
 
 standardize_age <- function(x) {
-  x <- normalize_missing_values(x)
+  x <- standarize_missing_values(x)
   x <- suppressWarnings(as.numeric(x))
   x[x < 0 | x > 120] <- NA
 
@@ -477,7 +477,7 @@ master_data_frame <- standardize_master_fields(master_data_frame)
 
 # convert unix timestamps to POSIXct so Google Sheets stores real datetimes
 unix_to_posixct <- function(x, tz = "UTC") {
-  x <- normalize_missing_values(x)
+  x <- standarize_missing_values(x)
   numeric_value <- suppressWarnings(as.numeric(x))
   datetime_value <- as.POSIXct(
     rep(NA_real_, length(numeric_value)),
@@ -516,7 +516,7 @@ master_data_frame <- standardize_master_datetime_columns(
 # and mark each encounter with "x" in the appropriate referral columns
 # ==============================================================================
 split_referrals_made <- function(x) {
-  x <- normalize_missing_values(x)
+  x <- standarize_missing_values(x)
   if (is.na(x)) {
     return(character(0))
   }
@@ -746,7 +746,7 @@ referral_data_frame <- build_referral_data_frame(
 # ContactType, partID, refID (each referral has its own row)
 # ==============================================================================
 to_datetime_from_unix <- function(x) {
-  x <- normalize_missing_values(x)
+  x <- standarize_missing_values(x)
   numeric_value <- suppressWarnings(as.numeric(x))
   datetime_value <- rep(NA_character_, length(x))
   valid_idx <- !is.na(numeric_value)
@@ -797,7 +797,7 @@ build_fact_data_frame <- function(referral_df, master_df, participant_df) {
   }
 
   if (!is.na(narrative_source_col)) {
-    narrative_values <- normalize_missing_values(
+    narrative_values <- standarize_missing_values(
       master_df[[narrative_source_col]]
     )
   } else {
@@ -805,7 +805,7 @@ build_fact_data_frame <- function(referral_df, master_df, participant_df) {
   }
 
   if (!is.na(contact_type_source_col)) {
-    contact_type_values <- normalize_missing_values(
+    contact_type_values <- standarize_missing_values(
       master_df[[contact_type_source_col]]
     )
   } else {
