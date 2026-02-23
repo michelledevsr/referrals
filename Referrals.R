@@ -150,9 +150,9 @@ read_source_data_frame <- function(link, tab, mime) {
 
 format_read_success_message <- function(file_name, tab, clean_name) {
   message <- paste(
-    "successfully read google sheet:",
-    paste0("\"", substr(file_name, 1, 5), "...\""),
-    "→ tab:", paste0("\"", substr(tab, 1, 5), "...\""),
+    "Successful read of file:",
+    paste0("\"", substr(file_name, 1, 9), "...\""),
+    "→ tab:", paste0("\"", substr(tab, 1, 9), "...\""),
     "→ stored as:", clean_name
   )
 
