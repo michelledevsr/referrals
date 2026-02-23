@@ -660,6 +660,9 @@ load_referral_category_map <- function(target_sheet_id, categories_sheet_name) {
     category_map <- stacked
   }
 
+  category_map$Referral <- as.character(category_map$Referral)
+  category_map$Category <- as.character(category_map$Category)
+
   category_map <- category_map[
     !is.na(category_map$Referral) & category_map$Referral != "", ,
     drop = FALSE
@@ -712,6 +715,8 @@ build_referral_data_frame <- function(master_df, category_map) {
 
   referral_df <- referral_df |>
     dplyr::left_join(category_map, by = "Referral")
+
+  referral_df$Category <- as.character(referral_df$Category)
 
   # use explicit placeholder when category mapping is missing
   missing_category <- is.na(referral_df$Category) | referral_df$Category == ""
