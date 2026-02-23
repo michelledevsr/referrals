@@ -50,7 +50,7 @@ load_required_packages(required_packages)
 
 
 # ==============================================================================
-# Google Authentication
+# 0. Google Authentication
 # ==============================================================================
 
 service_account_key_path <- ".secrets/service_account.json"
@@ -79,16 +79,17 @@ authenticate_google(service_account_key_path)
 
 
 # ==============================================================================
-# 0. Setup and Inputs
+# 1. Inputs
 # ==============================================================================
-# (1) Target spreadsheet and destination tabs
+# Target spreadsheet and destination tabs
 target_gsheet <- "https://docs.google.com/spreadsheets/d/1n-DV8baXhZ5wUCYTH2psT0t65yJu8QLKCZk9aK4Eof8"
 master_tab <- "Master"
 part_tab <- "Part"
 referral_tab <- "Referral"
 fact_tab <- "Fact"
 categories_tab <- "Categ_Ref"
-# (2) Source files to read (link and tab name)
+
+# Source files to read (link and tab name)
 files_to_read <- list(
   list(
     link = "https://docs.google.com/spreadsheets/d/1mwjmN_COQsYLbrsyZESAp7Ma4LIeHudHIUkvG_dcap8",
@@ -103,9 +104,10 @@ files_to_read <- list(
     tab = "iCarolExport-CA211VenturaCounty"
   )
 )
+# ==============================================================================
 
 # ==============================================================================
-# 0. Read Source Files
+# 2. File Reading
 # Read each source (Google Sheets or XLSX) and store each table in `data_list`.
 # ==============================================================================
 data_list <- list()
@@ -182,15 +184,12 @@ for (file in files_to_read) {
 }
 # ==============================================================================
 
-
 # ==============================================================================
-# ==============================================================================
-# 1. CREATE MASTER DATASET
-# ==============================================================================
+# 3. Master Dataset
 # ==============================================================================
 
 # ==============================================================================
-# 1.1 extract the correct headers for each dataset
+# 3.1 Extract the Correct Headers for Each Dataset
 # ==============================================================================
 # function which identifies headers and returns the df with the right headers
 detect_and_set_headers <- function(df) {
@@ -222,7 +221,7 @@ data_headers_ok <- lapply(data_list, detect_and_set_headers)
 # ==============================================================================
 
 # ==============================================================================
-# 1.2 clean columns and rows (apply correct date formats)
+# 3.2 Clean Columns and Rows (Apply Correct Date Formats)
 # ==============================================================================
 # function which cleans any string: trim spaces,
 # remove BOM, remove control chars
@@ -265,7 +264,7 @@ data_clean_ok <- lapply(data_headers_ok, clean_data_frame)
 # ==============================================================================
 
 # ==============================================================================
-# 1.3 merge all individual datasets into one master dataframe
+# 3.3 Merge All Individual Datasets into One Master Dataframe
 # ==============================================================================
 # normalize known column name variants before combining
 normalize_column_name <- function(x) {
@@ -355,9 +354,8 @@ data_prepared_to_be_combined <- lapply(data_clean_ok, function(df) {
 master_data_frame <- bind_rows(data_prepared_to_be_combined)
 # ==============================================================================
 
-
 # ==============================================================================
-# 1.4 standardize responses in: CityName, CountyName, PostalCode,
+# 3.4 Standardize Responses in: CityName, CountyName, PostalCode,
 # Call Information - Language of Call, Contact Type - # Contact Method,
 # Demographics - Caller Gender, Demographics - Callers Age)
 # ==============================================================================
@@ -511,10 +509,10 @@ master_data_frame <- standardize_master_datetime_columns(
   master_data_frame,
   c("CallDateAndTimeStart", "CallDateAndTimeEnd")
 )
-
+# ==============================================================================
 
 # ==============================================================================
-# 1.5 process referrals: for the referralsMade cols split multiple referrals by
+# 3.5 Process Referrals: for the referralsMade cols split multiple referrals by
 # ";", extract unique values, create one column per referral,
 # and mark each encounter with "x" in the appropriate referral columns
 # ==============================================================================
@@ -570,25 +568,25 @@ master_data_frame <- expand_referral_indicator_columns(
   master_df = master_data_frame,
   referrals_column = referrals_made_column
 )
-
+# ==============================================================================
 
 # ==============================================================================
-# 1.6 add encounter id (EnID): sequential index within the Master table
+# 3.6 Add Encounter ID (EnID): sequential index within the Master table
 # ==============================================================================
 master_data_frame$EnID <- seq_len(nrow(master_data_frame))
 
 # keep EnID as the first column for easier downstream joins
 master_data_frame <- master_data_frame |>
   dplyr::select(EnID, dplyr::everything())
-
-# ==============================================================================
-# ==============================================================================
-# 2. CREATE PARTICIPANT DATASET
-# ==============================================================================
 # ==============================================================================
 
+
 # ==============================================================================
-# 2.1 create a table with 8 cols -> EnID, Gender, Race,
+# 4. Participant Dataset
+# ==============================================================================
+
+# ==============================================================================
+# 4.1 Create a Table with 8 Cols -> EnID, Gender, Race,
 # Age, CityName, CountyName, PostalCode,
 # Call Information - Language of Call (retitled -> Language of Call)
 # ==============================================================================
@@ -622,30 +620,28 @@ build_participant_data_frame <- function(master_df) {
 }
 
 participant_data_frame <- build_participant_data_frame(master_data_frame)
+# ==============================================================================
 
 # ==============================================================================
-# 2.2 add participant id (PartID): sequential index within the Participant table
+# 4.2 Add Participant ID (PartID): sequential index within the Participant table
 # ==============================================================================
 participant_data_frame$PartID <- seq_len(nrow(participant_data_frame))
 
 # keep PartID as the first column in participant dataset
 participant_data_frame <- participant_data_frame |>
   dplyr::select(PartID, dplyr::everything())
-
-# ==============================================================================
-# ==============================================================================
-# 3. CREATE REFERRAL DATASET
-# ==============================================================================
 # ==============================================================================
 
 # ==============================================================================
-# 3.1 create a table with 4 columns —> EnID, RefID, Referral, and Category
+# 5. Referral Dataset
+# ==============================================================================
+
+# ==============================================================================
+# 5.1 Create a Table with 4 Columns —> EnID, RefID, Referral, and Category
 # (generating one row per referral and skipping cases with no referral)
 # ==============================================================================
 
-# ==============================================================================
-# for the category part:
-# ==============================================================================
+# for the category part
 load_referral_category_map <- function(target_sheet_id, categories_sheet_name) {
   raw_category_map <- suppressMessages(
     googlesheets4::read_sheet(
@@ -763,9 +759,10 @@ referral_data_frame <- build_referral_data_frame(
   master_df = master_data_frame,
   category_map = referral_category_map
 )
+# ==============================================================================
 
 # ==============================================================================
-# 3.2 attach referral ids to Master next to ReferralsMade
+# 5.2 Attach Referral IDs to Master next to ReferralsMade
 # ==============================================================================
 add_ref_ids_to_master <- function(master_df, referral_df) {
   ref_ids_by_encounter <- referral_df |>
@@ -790,19 +787,17 @@ add_ref_ids_to_master <- function(master_df, referral_df) {
 }
 
 master_data_frame <- add_ref_ids_to_master(master_data_frame, referral_data_frame)
-
-# ==============================================================================
-# ==============================================================================
-# 4. CREATE FACT DATASET
-# ==============================================================================
 # ==============================================================================
 
 # ==============================================================================
-# 4.1 create a table with 7 cols -> CallStartDate, CallEndDate, EnID,
+# 6. Fact Dataset
+# ==============================================================================
+
+# ==============================================================================
+# 6.1 Create a Table with 7 Cols -> CallStartDate, CallEndDate, EnID,
 # Narrative, ContactType, partID, refID
 # (each referral has its own row)
 # ==============================================================================
-
 pick_first_existing_column <- function(df, candidates) {
   # Return the first available option to enforce a deterministic priority.
   for (column_name in candidates) {
@@ -916,9 +911,10 @@ fact_data_frame <- build_fact_data_frame(
   master_df = master_data_frame,
   participant_df = participant_data_frame
 )
+# ==============================================================================
 
 # ==============================================================================
-# 5. EXPORT RESULTS to the target spreadsheet
+# 7. Export Results to the Target Spreadsheet
 # ==============================================================================
 export_targets <- list(
   list(data = master_data_frame, sheet = master_tab),
@@ -934,5 +930,4 @@ for (target in export_targets) {
     sheet = target$sheet
   )
 }
-
 # ==============================================================================
