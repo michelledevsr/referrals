@@ -745,22 +745,10 @@ referral_data_frame <- build_referral_data_frame(
 # ==============================================================================
 
 # ==============================================================================
-# 4.1 create a table with 6 cols -> Date, EnID, Narrative,
-# ContactType, partID, refID (each referral has its own row)
+# 4.1 create a table with 7 cols -> CallStartDate, CallEndDate, EnID,
+# Narrative, ContactType, partID, refID
+# (each referral has its own row)
 # ==============================================================================
-to_datetime_from_unix <- function(x) {
-  x <- normalize_missing_values(x)
-  numeric_value <- suppressWarnings(as.numeric(x))
-  datetime_value <- rep(NA_character_, length(x))
-  valid_idx <- !is.na(numeric_value)
-
-  datetime_value[valid_idx] <- format(
-    as.POSIXct(numeric_value[valid_idx], origin = "1970-01-01", tz = "UTC"),
-    "%Y-%m-%d %H:%M:%S"
-  )
-
-  return(datetime_value)
-}
 
 pick_first_existing_column <- function(df, candidates) {
   # Return the first available option to enforce a deterministic priority.
@@ -778,9 +766,13 @@ build_fact_data_frame <- function(referral_df, master_df, participant_df) {
     stop("referral_data_frame must include EnID and RefID columns.")
   }
 
-  date_source_col <- pick_first_existing_column(
+  call_start_source_col <- pick_first_existing_column(
     master_df,
-    c("CallDateAndTimeStart", "CallDateAndTimeEnd")
+    c("CallDateAndTimeStart")
+  )
+  call_end_source_col <- pick_first_existing_column(
+    master_df,
+    c("CallDateAndTimeEnd")
   )
   narrative_source_col <- pick_first_existing_column(master_df, c("Narrative"))
   contact_type_source_col <- pick_first_existing_column(
@@ -792,11 +784,28 @@ build_fact_data_frame <- function(referral_df, master_df, participant_df) {
   )
 
   empty_char <- rep(NA_character_, nrow(master_df))
+  empty_datetime <- as.POSIXct(
+    rep(NA_real_, nrow(master_df)),
+    origin = "1970-01-01",
+    tz = "UTC"
+  )
 
-  if (!is.na(date_source_col)) {
-    date_values <- to_datetime_from_unix(master_df[[date_source_col]])
+  if (!is.na(call_start_source_col)) {
+    call_start_values <- master_df[[call_start_source_col]]
+    if (!inherits(call_start_values, "POSIXct")) {
+      call_start_values <- unix_to_posixct(call_start_values)
+    }
   } else {
-    date_values <- empty_char
+    call_start_values <- empty_datetime
+  }
+
+  if (!is.na(call_end_source_col)) {
+    call_end_values <- master_df[[call_end_source_col]]
+    if (!inherits(call_end_values, "POSIXct")) {
+      call_end_values <- unix_to_posixct(call_end_values)
+    }
+  } else {
+    call_end_values <- empty_datetime
   }
 
   if (!is.na(narrative_source_col)) {
@@ -817,7 +826,8 @@ build_fact_data_frame <- function(referral_df, master_df, participant_df) {
 
   master_lookup <- data.frame(
     EnID = master_df$EnID,
-    Date = date_values,
+    CallStartDate = call_start_values,
+    CallEndDate = call_end_values,
     Narrative = narrative_values,
     ContactType = contact_type_values,
     stringsAsFactors = FALSE
@@ -831,7 +841,8 @@ build_fact_data_frame <- function(referral_df, master_df, participant_df) {
     dplyr::distinct(EnID, .keep_all = TRUE)
 
   fact_columns <- c(
-    "Date",
+    "CallStartDate",
+    "CallEndDate",
     "EnID",
     "Narrative",
     "ContactType",
