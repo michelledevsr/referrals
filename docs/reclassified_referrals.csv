@@ -1,0 +1,631 @@
+"Referral","Category","Reason","RowsAffected"
+"Free Tax Preparation (Volunteer Income Tax Assistance Program and MyFreeTaxes.org)","Utility & Financial Assistance","Keyword match: utility/financial assistance terms.",425
+"Homeless Assistance Services","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",138
+"Affordable Low Income Housing","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",137
+"Lyft Transportation Program","Utility & Financial Assistance","Fuzzy match to Categ_Ref item ""Weatherization Program"" (normalized distance=0.444).",123
+"Information and Assistance Services","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",117
+"CalAIM Community Support Services","Health & Behavioral Health","Keyword match: health/behavioral health terms.",83
+"The Arch","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""211.org"" (normalized distance=0.75).",78
+"Homeless Emergency Shelter (Men Only)","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",76
+"Emergency Shelter","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",75
+"CalAIM Community Support Service - Housing Services","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",64
+"Utility Assistance- Home Energy Assistance Program (HEAP)","Utility & Financial Assistance","Keyword match: utility/financial assistance terms.",64
+"Medi-Cal Program (Local Health Plan Provider: Gold Coast Health Plan)","Health & Behavioral Health","Keyword match: health/behavioral health terms.",62
+"Job & Community Service Centers","Education & Employment Support","Keyword match: education/employment terms.",46
+"VC Health Care for the Homeless One Stop Program","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",46
+"Section 8","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",45
+"Family Caregiving","Health & Behavioral Health","Fuzzy match to Categ_Ref item ""Family PACT"" (normalized distance=0.529).",44
+"Villa Madera","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""Dial-A-Ride"" (normalized distance=0.583).",37
+"Legal Assistance","Legal Services","Keyword match: legal support terms.",35
+"211 LA COUNTY (CALIFORNIA)","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",33
+"Domestic Violence Services","Health & Behavioral Health","Keyword match: health/behavioral health terms.",31
+"Homeless Services Program","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",29
+"Legal Clinic","Legal Services","Keyword match: legal support terms.",29
+"Gabriels House/The Kingdom Center","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",28
+"USAGov","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""211.org"" (normalized distance=0.857).",27
+"Adult Protective Services (APS)","Aging, Disability & Caregiving Services","Keyword match: aging/disability/caregiving terms.",26
+"Homeless Services Transition Center","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",26
+"Lunch and Dinner Service","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""Home Caregiver Services"" (normalized distance=0.542).",26
+"Affordable Housing and Specialized Care","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",24
+"Housing Rights Center Services","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",24
+"Kick it California","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""2-1-1 VENTURA (CALIFORNIA)"" (normalized distance=0.458).",24
+"Legal Advice Clinic","Legal Services","Keyword match: legal support terms.",24
+"Ventura Community Service Center","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Community Center"" (normalized distance=0.5).",24
+"Foul Weather Shelter Program","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",23
+"Crisis Team","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",22
+"Family to Family Soup Kitchen","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""Adult Protective Services"" (normalized distance=0.69).",22
+"Food Pantry","Food Assistance","Keyword match: food assistance terms.",22
+"Affordable Housing Guide","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",21
+"Emergency Financial Assistance","Utility & Financial Assistance","Keyword match: utility/financial assistance terms.",21
+"Assistant Services","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Social Services"" (normalized distance=0.389).",18
+"GO ACCESS (Paratransit Service)","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Homeless and Housing Services"" (normalized distance=0.517).",18
+"Health Ministries- Hot Meal Program","Food Assistance","Keyword match: food assistance terms.",18
+"Emergency Utility Service Payment Assistance","Utility & Financial Assistance","Keyword match: utility/financial assistance terms.",17
+"Our Place Safe Haven","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Police Services"" (normalized distance=0.65).",17
+"Social Security Services","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Social Services"" (normalized distance=0.375).",17
+"Thrive Grove Navigation Center","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",17
+"Casa Merced Apartments","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Sheriff Department"" (normalized distance=0.5).",16
+"Lawyer Referral & Information Service (LRIS)","Legal Services","Keyword match: legal support terms.",16
+"Domestic Violence Emergency Safe Housing","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",15
+"General Relief (GR)","Utility & Financial Assistance","Fuzzy match to Categ_Ref item ""General Assistance"" (normalized distance=0.5).",15
+"Medi-Cal Supported Non-Emergency Transportation (Gold Coast Health Plan)","Health & Behavioral Health","Keyword match: health/behavioral health terms.",15
+"Ventura Homeless Prevention","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",15
+"Behavioral Health Department - Adult Services","Health & Behavioral Health","Keyword match: health/behavioral health terms.",14
+"BenefitsCal","Health & Behavioral Health","Fuzzy match to Categ_Ref item ""Medi-Cal"" (normalized distance=0.545).",14
+"CalHOPE","Utility & Financial Assistance","Fuzzy match to Categ_Ref item ""CalWORKS"" (normalized distance=0.5).",14
+"Emergency Loan Program","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Home Repair Program"" (normalized distance=0.545).",14
+"Health Care Services","Health & Behavioral Health","Keyword match: health/behavioral health terms.",14
+"Hope Center","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Homeless Shelter"" (normalized distance=0.5).",14
+"Animal Services","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Social Services"" (normalized distance=0.267).",13
+"Interface Children & Family Services - CalAIM Enhanced Care Management Services (ECM)","Health & Behavioral Health","Keyword match: health/behavioral health terms.",13
+"Oxnard Police Department","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",13
+"Senior Nutrition Program - Home Delivered Meals","Food Assistance","Keyword match: food assistance terms.",13
+"CalAIM Community Support Service - Medically Supported Food - The Medical Kitchen by Slate","Food Assistance","Keyword match: food assistance terms.",12
+"CalWORKs Housing Support Program (CHSP)","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",12
+"Casa San Juan (3-5 year Waiting List)","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""Area Agency on Aging"" (normalized distance=0.714).",12
+"Thousand Oaks Police Department","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",12
+"VCMC Alcohol & Drug Detoxification Service","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Homeless and Housing Services"" (normalized distance=0.636).",12
+"Active Adult Center","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Enrichment Center"" (normalized distance=0.526).",11
+"Americans with Disabilities Act Certification (ADA)","Aging, Disability & Caregiving Services","Keyword match: aging/disability/caregiving terms.",11
+"Community Market (Food Distribution)","Food Assistance","Keyword match: food assistance terms.",11
+"Habitat Home Repair Program","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Minor Home Repair Program"" (normalized distance=0.222).",11
+"Public/Conventional Housing- Accepting applications (November 2025)","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",11
+"CalFresh and CalWORKS Online EBT Use","Food Assistance","Keyword match: food assistance terms.",10
+"Homeless Services Program - Rain Transitional Living Program","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",10
+"Medical Services","Health & Behavioral Health","Keyword match: health/behavioral health terms.",10
+"Public Housing Program","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",10
+"Section 8- All Wait Lists Currently Closed","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",10
+"Senior Care Services","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Police Services"" (normalized distance=0.4).",10
+"Support Services","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Social Services"" (normalized distance=0.375).",10
+"Affordable Housing *WAITLIST IS CURRENTLY CLOSED OCT 2025*","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",9
+"California Work Opportunity and Responsibility to Kids (CalWORKs)","Health & Behavioral Health","Fuzzy match to Categ_Ref item ""California Advancing and Innovating Medi-Cal (CalAIM)"" (normalized distance=0.619).",9
+"Diaper Distribution","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""Dial-A-Ride"" (normalized distance=0.684).",9
+"Emergency Rent Payment Assistance","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",9
+"Food Pantry-Church of the Nazarene","Food Assistance","Keyword match: food assistance terms.",9
+"Food Pantry-First Baptist Church El Rio","Food Assistance","Keyword match: food assistance terms.",9
+"Food Pantry-St. Anthonys Church","Food Assistance","Keyword match: food assistance terms.",9
+"Food Pantry-St. Johns Health Ministries","Food Assistance","Keyword match: food assistance terms.",9
+"National Domestic Violence Hotline","Health & Behavioral Health","Keyword match: health/behavioral health terms.",9
+"Adult Detox and Dual Diagnosis Program","Education & Employment Support","Fuzzy match to Categ_Ref item ""Adult Literacy Program"" (normalized distance=0.579).",8
+"California Low Cost Automobile Insurance Program","Utility & Financial Assistance","Fuzzy match to Categ_Ref item ""California LifeLine Telephone/Wireless Programs"" (normalized distance=0.542).",8
+"Children and Family Services","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Homeless and Housing Services"" (normalized distance=0.448).",8
+"Donation Program","Utility & Financial Assistance","Fuzzy match to Categ_Ref item ""Weatherization Program"" (normalized distance=0.409).",8
+"Food Pantry-Salvation Army Ventura","Food Assistance","Keyword match: food assistance terms.",8
+"Hot Meal Program","Food Assistance","Keyword match: food assistance terms.",8
+"Low Income Home Energy Assistance Program (aka HEAP)","Utility & Financial Assistance","Keyword match: utility/financial assistance terms.",8
+"Mental Health Court Adult Mental Health Services","Legal Services","Keyword match: legal support terms.",8
+"Mental Health Services","Health & Behavioral Health","Keyword match: health/behavioral health terms.",8
+"Neighborly Assistance for Seniors","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Mobilehome Assistance Center"" (normalized distance=0.515).",8
+"OASIS (Older Adult Services and Intervention System)","Health & Behavioral Health","Fuzzy match to Categ_Ref item ""Crisis Assessment & Intervention Program"" (normalized distance=0.52).",8
+"PG&E Energy Payment Assistance and Billing Plans","Utility & Financial Assistance","Keyword match: utility/financial assistance terms.",8
+"Point Break Recovery LLC","Health & Behavioral Health","Fuzzy match to Categ_Ref item ""Therapy Referrals"" (normalized distance=0.667).",8
+"SAMHSA Mental Health and Substance Use Treatment Service and FindTreatment.gov","Health & Behavioral Health","Keyword match: health/behavioral health terms.",8
+"Simi Valley Transit - Fixed Route & Dial-A-Ride Service","Aging, Disability & Caregiving Services","Keyword match: aging/disability/caregiving terms.",8
+"Transportation Program","Utility & Financial Assistance","Fuzzy match to Categ_Ref item ""Weatherization Program"" (normalized distance=0.364).",8
+"Ventura County Pop-Up Pantries","Food Assistance","Fuzzy match to Categ_Ref item ""Interfaith Food Pantry"" (normalized distance=0.6).",8
+"Ventura Police Department","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",8
+"Area Agency on Aging (AAA)","Aging, Disability & Caregiving Services","Keyword match: aging/disability/caregiving terms.",7
+"Clinic Services","Health & Behavioral Health","Keyword match: health/behavioral health terms.",7
+"Crime Victims Assistance Program (CVAP)","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Housing Assistance Program"" (normalized distance=0.459).",7
+"Disability Employment Works","Education & Employment Support","Keyword match: education/employment terms.",7
+"Discount Utility and Weatherization Programs","Utility & Financial Assistance","Keyword match: utility/financial assistance terms.",7
+"Food Pantry-Temple Beth Torah","Food Assistance","Keyword match: food assistance terms.",7
+"Food Pantry-Westminster Free Clinic - Oxnard","Food Assistance","Keyword match: food assistance terms.",7
+"Legal Document Preparation","Legal Services","Keyword match: legal support terms.",7
+"Low-Income Housing","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",7
+"Mental Health Support Line","Health & Behavioral Health","Keyword match: health/behavioral health terms.",7
+"Motor Vehicles Department Services","Education & Employment Support","Fuzzy match to Categ_Ref item ""Mother Lode Job Training Services"" (normalized distance=0.529).",7
+"Parent Coaching","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",7
+"Public Housing Program *WAIT LIST IS CLOSED*","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",7
+"SCE Public Safety Power Shutoffs (PSPS)","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",7
+"Section 8 Program *WAIT LIST IS CLOSED*","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",7
+"Animal Control Unit","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Animal Poison Control Hotline"" (normalized distance=0.448).",6
+"Animal Shelter","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",6
+"Bevins Court Apartments (Disabled Adults)","Legal Services","Keyword match: legal support terms.",6
+"Camarillo Police Department","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",6
+"Civil Legal Services","Legal Services","Keyword match: legal support terms.",6
+"Food Pantry-Camarillo Community Church","Food Assistance","Keyword match: food assistance terms.",6
+"Food Pantry-St. Mary Magdalen","Food Assistance","Keyword match: food assistance terms.",6
+"Homeless Support Services","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",6
+"Landfills Disposal Facilities & Refuse Collection","Health & Behavioral Health","Fuzzy match to Categ_Ref item ""Medical Education and Referrals"" (normalized distance=0.667).",6
+"Las Islas Family Medical Group (Ambulatory Care Clinic)","Health & Behavioral Health","Keyword match: health/behavioral health terms.",6
+"Meal Share Camarillo","Food Assistance","Keyword match: food assistance terms.",6
+"Peer Run Warm Line","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""24/7 Crisis Line"" (normalized distance=0.667).",6
+"Residential Drug and Alcohol Detox and Rehabilitation Program for Men","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""Disability Disaster Access and Resources (DDAR) Program"" (normalized distance=0.667).",6
+"Sunrise and Sunset Safe Rides","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Homeless and Housing Services"" (normalized distance=0.621).",6
+"Supplemental Nutrition Assistance Program Directory","Food Assistance","Keyword match: food assistance terms.",6
+"Taxpayer Information and Forms","Utility & Financial Assistance","Keyword match: utility/financial assistance terms.",6
+"Triple P - Positive Parenting Program","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",6
+"Ventura County NextGen","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Enrichment Center"" (normalized distance=0.591).",6
+"2-1-1 KERN COUNTY (CALIFORNIA)","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",5
+"Access for All","Health & Behavioral Health","Fuzzy match to Categ_Ref item ""Medi-Cal"" (normalized distance=0.714).",5
+"Better Business Bureau Services","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""Disability Resource Services"" (normalized distance=0.581).",5
+"Co-Custody Parenting Classes","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",5
+"Consumer Mediation and Small Claims Advisory","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""City of Stockton Animal Services Unit"" (normalized distance=0.682).",5
+"Consumer and Environmental Protection Unit","Health & Behavioral Health","Keyword match: health/behavioral health terms.",5
+"County Clerk","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Community Center"" (normalized distance=0.438).",5
+"Family Caregiver Preplacement Counseling","Health & Behavioral Health","Keyword match: health/behavioral health terms.",5
+"Food Pantry-Catholic Charities Ventura","Food Assistance","Keyword match: food assistance terms.",5
+"Food Pantry-Community Bible Church","Food Assistance","Keyword match: food assistance terms.",5
+"Food Pantry-SDA Community Health Services","Food Assistance","Keyword match: food assistance terms.",5
+"Food Pantry-Salvation Army Oxnard","Food Assistance","Keyword match: food assistance terms.",5
+"Food Pantry-Seventh Day Adventist Church","Food Assistance","Keyword match: food assistance terms.",5
+"Friendship Line California","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""211 SLO COUNTY (CALIFORNIA)"" (normalized distance=0.538).",5
+"Mental Health - Counseling for Children and Youth","Health & Behavioral Health","Keyword match: health/behavioral health terms.",5
+"My Free Taxes Online Preparation","Utility & Financial Assistance","Keyword match: utility/financial assistance terms.",5
+"Port Hueneme Police Department","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",5
+"Section 8 Housing (WAITING LIST CLOSED - NOT ACCEPTING APPLICATIONS)","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",5
+"Superior Court","Legal Services","Keyword match: legal support terms.",5
+"The City Center Transitional Living","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Low-income/Subsidized Housing"" (normalized distance=0.686).",5
+"Unemployment Insurance (UI)","Education & Employment Support","Keyword match: education/employment terms.",5
+"Youth and Family Services","Legal Services","Fuzzy match to Categ_Ref item ""Legal Aid Services"" (normalized distance=0.48).",5
+"211 BAY AREA (CALIFORNIA)","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",4
+"211 CONTRA COSTA (CALIFORNIA)","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",4
+"211 SAN BERNARDINO COUNTY (CALIFORNIA)","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",4
+"Behavioral Health Treatment Center","Health & Behavioral Health","Keyword match: health/behavioral health terms.",4
+"Bread of Life Meal","Food Assistance","Keyword match: food assistance terms.",4
+"Cash Assistance Program for Immigrants (CAPI)","Utility & Financial Assistance","Keyword match: utility/financial assistance terms.",4
+"Community Counseling Services","Health & Behavioral Health","Keyword match: health/behavioral health terms.",4
+"Conflict Resolution Institute","Utility & Financial Assistance","Fuzzy match to Categ_Ref item ""Utility Assistance"" (normalized distance=0.724).",4
+"Cornerstone Counseling Services","Health & Behavioral Health","Keyword match: health/behavioral health terms.",4
+"Counseling Services","Health & Behavioral Health","Keyword match: health/behavioral health terms.",4
+"Dental Services","Legal Services","Fuzzy match to Categ_Ref item ""Legal Services"" (normalized distance=0.2).",4
+"Find a Provider (Doctors/Dentist Accepting Medi-Cal)","Health & Behavioral Health","Keyword match: health/behavioral health terms.",4
+"Food Pantry-Fillmore Police Storefront","Food Assistance","Keyword match: food assistance terms.",4
+"Food Pantry-Oxnard Community Food Pantry","Food Assistance","Keyword match: food assistance terms.",4
+"Food Pantry-St. Francis of Assisi","Food Assistance","Keyword match: food assistance terms.",4
+"Food Pantry-Two Trees COC","Food Assistance","Keyword match: food assistance terms.",4
+"Food and Diaper Distribution","Food Assistance","Keyword match: food assistance terms.",4
+"Grief Support","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""211.org"" (normalized distance=0.769).",4
+"Homeless Drop In Center","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",4
+"Justice Involved Services (Re-entry Program)","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Minor Home Repair Program"" (normalized distance=0.595).",4
+"Legal Self Help Clinic - Family and Non-Family Law","Legal Services","Keyword match: legal support terms.",4
+"Parenting Classes","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",4
+"Pet Pantry","Food Assistance","Keyword match: food assistance terms.",4
+"Ruben Castro Charities Diaper Distribution","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Emergency and Disaster Information"" (normalized distance=0.69).",4
+"Salvation Army Hollister Corps","Health & Behavioral Health","Fuzzy match to Categ_Ref item ""Addiction Support Services"" (normalized distance=0.667).",4
+"Senior Basket Program","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Home Repair Program"" (normalized distance=0.524).",4
+"Senior Support Line","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Sheriff Department"" (normalized distance=0.632).",4
+"Sheriffs Dispatch","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",4
+"Simi Valley Police Department","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",4
+"Substance Use Services","Health & Behavioral Health","Keyword match: health/behavioral health terms.",4
+"Support Helpline","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",4
+"Supportive Services for Native American/Native Hawaiian/Alaskan Native families","Legal Services","Fuzzy match to Categ_Ref item ""Native American Legal Services"" (normalized distance=0.696).",4
+"Veteran Services","Legal Services","Fuzzy match to Categ_Ref item ""Legal Services"" (normalized distance=0.312).",4
+"Volunteer Ventura County","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""2-1-1 VENTURA (CALIFORNIA)"" (normalized distance=0.667).",4
+"2-1-1 SACRAMENTO (CALIFORNIA)","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",3
+"2-1-1 TEXAS","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",3
+"Adult Inpatient Care Program","Education & Employment Support","Fuzzy match to Categ_Ref item ""Adult Literacy Program"" (normalized distance=0.393).",3
+"Alcoholics Anonymous Meetings (AA)","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Homeless and Housing Services"" (normalized distance=0.688).",3
+"Autism Therapy Services","Health & Behavioral Health","Keyword match: health/behavioral health terms.",3
+"Bereavement Counseling and Support Groups","Health & Behavioral Health","Keyword match: health/behavioral health terms.",3
+"Broadband Internet Screening","Utility & Financial Assistance","Fuzzy match to Categ_Ref item ""Spectrum Internet Assist"" (normalized distance=0.607).",3
+"CalAIM Community Support Service - Medically Supported Food - Fresh & Fabulous","Food Assistance","Keyword match: food assistance terms.",3
+"CalAIM Community Support Service - Medically Supported Food - The Medical Kitchen","Food Assistance","Keyword match: food assistance terms.",3
+"Caregiving Resources","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""Home Caregiver Services"" (normalized distance=0.565).",3
+"Child Support Services","Health & Behavioral Health","Fuzzy match to Categ_Ref item ""Addiction Support Services"" (normalized distance=0.269).",3
+"Code Compliance","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Safe Place"" (normalized distance=0.533).",3
+"Critical Assistance Program","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Housing Assistance Program"" (normalized distance=0.259).",3
+"Debt Counseling Helpline","Health & Behavioral Health","Keyword match: health/behavioral health terms.",3
+"Developmental Support Services","Health & Behavioral Health","Keyword match: health/behavioral health terms.",3
+"Discover Life Seventh Day","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Sheriff Department"" (normalized distance=0.68).",3
+"Earn While You Learn","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""995 HOPE Hotline"" (normalized distance=0.7).",3
+"Electronic Benefit Transfer Project (EBT)","Utility & Financial Assistance","Fuzzy match to Categ_Ref item ""Spectrum Internet Assist"" (normalized distance=0.692).",3
+"Emergency Housing Assistance Program (EHAP)","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",3
+"Family Violence Appellate Project (FVAP)","Health & Behavioral Health","Keyword match: health/behavioral health terms.",3
+"Financial Assistance Services","Utility & Financial Assistance","Keyword match: utility/financial assistance terms.",3
+"Food Angels","Food Assistance","Keyword match: food assistance terms.",3
+"Food Pantry- First Church of Port Hueneme","Food Assistance","Keyword match: food assistance terms.",3
+"Food Pantry-Adelante Comunidad Conejo @ Conejo Elementary School","Food Assistance","Keyword match: food assistance terms.",3
+"Food Pantry-Bardsdale United Methodist Church","Food Assistance","Keyword match: food assistance terms.",3
+"Food Pantry-Church of Scientology of Ventura","Food Assistance","Keyword match: food assistance terms.",3
+"Food Pantry-One Step a la Vez","Food Assistance","Keyword match: food assistance terms.",3
+"Food Pantry-Project Hope St. Columbas Episcopal Church","Food Assistance","Keyword match: food assistance terms.",3
+"Food Pantry-Sacred Heart Food Pantry","Food Assistance","Keyword match: food assistance terms.",3
+"Food Pantry-Salvation Army @ Rancho Sespe Apts","Food Assistance","Keyword match: food assistance terms.",3
+"Food Pantry-Shepherd of the Valley","Food Assistance","Keyword match: food assistance terms.",3
+"Food Pantry-VC Believe Center","Food Assistance","Keyword match: food assistance terms.",3
+"Home Medical Supplies","Health & Behavioral Health","Keyword match: health/behavioral health terms.",3
+"Housing Choice Voucher Rental Assistance Program (3-5 year wait)","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",3
+"Individual/Family Grief Counseling Services (A program of Camarillo Hospice)","Health & Behavioral Health","Keyword match: health/behavioral health terms.",3
+"Meals on Wheels Locator","Food Assistance","Keyword match: food assistance terms.",3
+"Medical Referral Services","Health & Behavioral Health","Keyword match: health/behavioral health terms.",3
+"Office of Emergency Services (OES) Disaster Information","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Emergency and Disaster Information"" (normalized distance=0.415).",3
+"PG&E Public Safety Power Shutoffs (PSPS)","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",3
+"Pet Food Bank","Food Assistance","Keyword match: food assistance terms.",3
+"Pregnancy Related Services","Legal Services","Fuzzy match to Categ_Ref item ""Legal Aid Services"" (normalized distance=0.423).",3
+"Public Works Department","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Sheriff Department"" (normalized distance=0.478).",3
+"Rehabilitation Programs","Utility & Financial Assistance","Fuzzy match to Categ_Ref item ""Weatherization Program"" (normalized distance=0.348).",3
+"Relocation and Placement Services","Health & Behavioral Health","Fuzzy match to Categ_Ref item ""Addiction Support Services"" (normalized distance=0.485).",3
+"Restaurant Meals Program (RMP)","Food Assistance","Keyword match: food assistance terms.",3
+"Senior Meals -  Meal Delivery","Food Assistance","Keyword match: food assistance terms.",3
+"Smile California","Utility & Financial Assistance","Fuzzy match to Categ_Ref item ""CalWORKS"" (normalized distance=0.688).",3
+"Stronger Starts","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Safe Place"" (normalized distance=0.733).",3
+"Substance Use Co-occuring Treatment Services","Health & Behavioral Health","Keyword match: health/behavioral health terms.",3
+"Support Groups","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Fisher House"" (normalized distance=0.714).",3
+"Transitional Age Youth Wellness and Recovery Center (TAY Tunnel)","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""National Homeless Youth Crisis Hotline"" (normalized distance=0.645).",3
+"Vehicle Consumer Assistance Program","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Housing Assistance Program"" (normalized distance=0.371).",3
+"Westminster Free Clinic- Thousand Oaks","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",3
+"Youth Crisis Line and Shelter","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",3
+"2-1-1 SAN DIEGO (CALIFORNIA)","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",2
+"2-1-1 SAN JOAQUIN COUNTY (CALIFORNIA)","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",2
+"2-1-1 SANTA BARBARA COUNTY  (CALIFORNIA)","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",2
+"2-1-1 SONOMA COUNTY (CALIFORNIA)","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",2
+"211INFO (OREGON)","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",2
+"Adult Probation Services","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""Adult Protective Services"" (normalized distance=0.2).",2
+"Advocacy Services","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Police Services"" (normalized distance=0.353).",2
+"Advocate Services","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Police Services"" (normalized distance=0.353).",2
+"Alzheimer's Disease Research Center","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Victims of Crime Resource Center"" (normalized distance=0.514).",2
+"Americas Job Center","Education & Employment Support","Keyword match: education/employment terms.",2
+"Anger Management","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Sheriff Department"" (normalized distance=0.611).",2
+"Assistance Dog Special Allowance Program","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Housing Assistance Program"" (normalized distance=0.575).",2
+"Assisting the Senior Adult Population Program","Health & Behavioral Health","Fuzzy match to Categ_Ref item ""Crisis Assessment & Intervention Program"" (normalized distance=0.556).",2
+"Batterers Intervention Program","Utility & Financial Assistance","Fuzzy match to Categ_Ref item ""Weatherization Program"" (normalized distance=0.467).",2
+"California Programs and Services","Legal Services","Fuzzy match to Categ_Ref item ""Legal Aid Services"" (normalized distance=0.531).",2
+"Camarillo Area Transit (CAT)-Dial-A-Ride (DAR)","Aging, Disability & Caregiving Services","Keyword match: aging/disability/caregiving terms.",2
+"Caregiver Support Hub","Aging, Disability & Caregiving Services","Keyword match: aging/disability/caregiving terms.",2
+"Caregiver Support Services","Aging, Disability & Caregiving Services","Keyword match: aging/disability/caregiving terms.",2
+"Child Care Information","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Child Abuse Reporting"" (normalized distance=0.5).",2
+"Co-Parenting","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",2
+"Co-Parenting Program","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",2
+"Coalition Thrift Store","Utility & Financial Assistance","Fuzzy match to Categ_Ref item ""Utility Assistance"" (normalized distance=0.682).",2
+"Community Action Partnership","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Community Center"" (normalized distance=0.464).",2
+"Community Care Licensing","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Community Center"" (normalized distance=0.458).",2
+"Community Food Pantry","Food Assistance","Keyword match: food assistance terms.",2
+"Community Memorial Hospital Services","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Community Support Services (CSS)"" (normalized distance=0.528).",2
+"Community Pregnancy Clinic","Health & Behavioral Health","Keyword match: health/behavioral health terms.",2
+"County Assessor","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Community Center"" (normalized distance=0.562).",2
+"Dental Referral","Health & Behavioral Health","Fuzzy match to Categ_Ref item ""Therapy Referrals"" (normalized distance=0.412).",2
+"Domestic Violence Information Services","Health & Behavioral Health","Keyword match: health/behavioral health terms.",2
+"DoorDash Dog and Cat Food Delivery","Food Assistance","Keyword match: food assistance terms.",2
+"Elder Legal Services","Legal Services","Keyword match: legal support terms.",2
+"Emergency Food Assistance","Food Assistance","Keyword match: food assistance terms.",2
+"Federal Housing Administration (FHA)","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",2
+"Food Bank","Food Assistance","Keyword match: food assistance terms.",2
+"Food Pantry-Adelante Comunidad Conejo @ Shadows Apartments","Food Assistance","Keyword match: food assistance terms.",2
+"Food Pantry-CEDC-Azahar Place Apartments","Food Assistance","Keyword match: food assistance terms.",2
+"Food Pantry-Cal State University Channel Islands (CSUCI)*","Food Assistance","Keyword match: food assistance terms.",2
+"Food Pantry-Calvary Community Church","Food Assistance","Keyword match: food assistance terms.",2
+"Food Pantry-Celebration Nation - Oxnard Pal Gym","Food Assistance","Keyword match: food assistance terms.",2
+"Food Pantry-Christian Church of Thousand Oaks","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",2
+"Food Pantry-LUCHA-Poder Popular Santa Paula","Food Assistance","Keyword match: food assistance terms.",2
+"Food Pantry-New Beginnings Christian Fellowship","Food Assistance","Keyword match: food assistance terms.",2
+"Food Pantry-New Heart Foursquare Church","Food Assistance","Keyword match: food assistance terms.",2
+"Food Pantry-PAL Westpark Community Center","Food Assistance","Keyword match: food assistance terms.",2
+"Food Pantry-Produce-Westpark Community Center","Food Assistance","Keyword match: food assistance terms.",2
+"Food Pantry-Rio Real School","Food Assistance","Keyword match: food assistance terms.",2
+"Food Pantry-Samaritan Center Simi Valley","Food Assistance","Keyword match: food assistance terms.",2
+"Food Pantry-Seventh-day Adventist Church-Thousand Oaks","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",2
+"Food Pantry-Shelter Care Resources @ A Street","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",2
+"Food Pantry-Spirit of Santa Paula/Many Meals","Food Assistance","Keyword match: food assistance terms.",2
+"Food Pantry-St. Paschal Baylon","Food Assistance","Keyword match: food assistance terms.",2
+"Franchise Tax Board (FTB)","Utility & Financial Assistance","Keyword match: utility/financial assistance terms.",2
+"Free Diaper Bank","Health & Behavioral Health","Fuzzy match to Categ_Ref item ""Medi-Cal"" (normalized distance=0.688).",2
+"General Relief","Utility & Financial Assistance","Fuzzy match to Categ_Ref item ""General Assistance"" (normalized distance=0.5).",2
+"Health Consumer Alliance Insurance Hotline","Health & Behavioral Health","Keyword match: health/behavioral health terms.",2
+"Hollister Dial-A-Ride","Aging, Disability & Caregiving Services","Keyword match: aging/disability/caregiving terms.",2
+"Home Care Services","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""Home Caregiver Services"" (normalized distance=0.217).",2
+"Individual Psychotherapy/Family Counseling/Reunification Therapy","Health & Behavioral Health","Keyword match: health/behavioral health terms.",2
+"Job Seekers","Education & Employment Support","Keyword match: education/employment terms.",2
+"LGBT National Hotline","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",2
+"Law Help CA Legal Information","Legal Services","Keyword match: legal support terms.",2
+"Lyft Silver","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Safe Place"" (normalized distance=0.727).",2
+"Magnolia Family Health Center (Ambulatory Care Clinic)","Health & Behavioral Health","Keyword match: health/behavioral health terms.",2
+"Medical Equipment Lending Program","Health & Behavioral Health","Keyword match: health/behavioral health terms.",2
+"Men and Womens Sober Living Homes","Legal Services","Fuzzy match to Categ_Ref item ""Tenant Rights Hotline"" (normalized distance=0.636).",2
+"Mental Health - Trauma Treatment","Health & Behavioral Health","Keyword match: health/behavioral health terms.",2
+"Narcotics Anonymous Support Group","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""In-Home Support Program"" (normalized distance=0.606).",2
+"Neighborhoods for Learning","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""Department of Aging"" (normalized distance=0.654).",2
+"Nursing Home and Residential Care Guide","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Mobilehome Assistance Center"" (normalized distance=0.641).",2
+"Oak Hill Apartments (Families/Farm Workers)","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""Adult Protective Services"" (normalized distance=0.683).",2
+"Opiate Detox/Treatment","Health & Behavioral Health","Keyword match: health/behavioral health terms.",2
+"Optometry Services","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Police Services"" (normalized distance=0.389).",2
+"Parent Consultations","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",2
+"Public Benefits Assistance","Utility & Financial Assistance","Fuzzy match to Categ_Ref item ""Utility Assistance"" (normalized distance=0.423).",2
+"Public Defender","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Police Services"" (normalized distance=0.6).",2
+"Public Safety Power Shutoff (PSPS) Resources","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",2
+"ReStore","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""211.org"" (normalized distance=0.714).",2
+"Records Department","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Sheriff Department"" (normalized distance=0.389).",2
+"Reentry Advice Hotline","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",2
+"Residential Withdrawal Management (For Women Only)","Utility & Financial Assistance","Fuzzy match to Categ_Ref item ""PG&E General Power Outage Information"" (normalized distance=0.729).",2
+"Safe Needle Disposal Resource Center","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",2
+"San Benito County Services","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""Disability Resource Services"" (normalized distance=0.464).",2
+"Santa Paula Police Department","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",2
+"Senior Housing Advocacy","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",2
+"St Patricks Catholic Church Food Pantry","Food Assistance","Keyword match: food assistance terms.",2
+"St. Johns Regional Medical Center","Health & Behavioral Health","Keyword match: health/behavioral health terms.",2
+"State Disability Insurance","Aging, Disability & Caregiving Services","Keyword match: aging/disability/caregiving terms.",2
+"The Nest Youth Transitional Housing","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",2
+"Trash Collection Services","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""Adult Protective Services"" (normalized distance=0.44).",2
+"Tuolumne County Transit Fixed Routes","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Low-income/Subsidized Housing"" (normalized distance=0.667).",2
+"United Way Partner Projects & Initiatives","Utility & Financial Assistance","Fuzzy match to Categ_Ref item ""PG&E General Power Outage Information"" (normalized distance=0.698).",2
+"Ventura County Medical Center - Hospital","Health & Behavioral Health","Keyword match: health/behavioral health terms.",2
+"Victims Services Unit (VSU)","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Social Services"" (normalized distance=0.56).",2
+"Vision Voucher","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",2
+"Voice Options Program","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Home Repair Program"" (normalized distance=0.429).",2
+"Women Infants and Children","Health & Behavioral Health","Fuzzy match to Categ_Ref item ""Home Health Care"" (normalized distance=0.615).",2
+"2-1-1 ARIZONA","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",1
+"2-1-1 BREVARD (FLORIDA)","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",1
+"2-1-1 MONTEREY COUNTY (CALIFORNIA)","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",1
+"2-1-1 SAN BENITO (CALIFORNIA)","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",1
+"211 RIVERSIDE COUNTY","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",1
+"211 Ventura County","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",1
+"211Now.com","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",1
+"AARP","Utility & Financial Assistance","Fuzzy match to Categ_Ref item ""CalWORKS"" (normalized distance=0.75).",1
+"AARP Tax Aide","Utility & Financial Assistance","Keyword match: utility/financial assistance terms.",1
+"Access TLC - CalAIM Enhanced Care Management Services","Health & Behavioral Health","Keyword match: health/behavioral health terms.",1
+"Administration Services/Call Center","Legal Services","Fuzzy match to Categ_Ref item ""Superior Court Self Help Center"" (normalized distance=0.629).",1
+"Adolescent Family Life Program-Positive Youth Development (AFLP-PYD)","Utility & Financial Assistance","Fuzzy match to Categ_Ref item ""Safety Net Program/The Storm Inconvenience Payment"" (normalized distance=0.712).",1
+"Adult Bereavement Group","Education & Employment Support","Fuzzy match to Categ_Ref item ""Adult Literacy Program"" (normalized distance=0.609).",1
+"Adult Day Health Care Center","Health & Behavioral Health","Keyword match: health/behavioral health terms.",1
+"Adult Day Health Care Center (ADHC)","Health & Behavioral Health","Keyword match: health/behavioral health terms.",1
+"Adult Support Services","Health & Behavioral Health","Fuzzy match to Categ_Ref item ""Addiction Support Services"" (normalized distance=0.231).",1
+"Affordable Healthcare","Health & Behavioral Health","Keyword match: health/behavioral health terms.",1
+"Affordable Healthcare/Covered CA","Health & Behavioral Health","Keyword match: health/behavioral health terms.",1
+"Affordable Housing Assistance","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",1
+"After School Youth Activities","Utility & Financial Assistance","Fuzzy match to Categ_Ref item ""Access Low Cost Internet"" (normalized distance=0.655).",1
+"After School and Summer Programs","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Minor Home Repair Program"" (normalized distance=0.562).",1
+"After School and Summer Youth Programs","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""In-Home Support Program"" (normalized distance=0.579).",1
+"Al-Anon Family Support Groups (Al-Anon/Alateen)","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""In-Home Support Program"" (normalized distance=0.667).",1
+"Anacapa Surgical (Ambulatory Care Clinic)","Health & Behavioral Health","Keyword match: health/behavioral health terms.",1
+"Angels Way Ministry at St Mel","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""EASTERN WASHINGTON 2-1-1"" (normalized distance=0.655).",1
+"Anger Management Program","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Home Repair Program"" (normalized distance=0.542).",1
+"Animal Licensing","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""Dial-A-Ride"" (normalized distance=0.688).",1
+"Apartment Setup Assistance","Utility & Financial Assistance","Fuzzy match to Categ_Ref item ""General Assistance"" (normalized distance=0.462).",1
+"Aspen School (TK-5)","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Fisher House"" (normalized distance=0.765).",1
+"AssistHub Supportive Services","Health & Behavioral Health","Fuzzy match to Categ_Ref item ""Addiction Support Services"" (normalized distance=0.31).",1
+"Autism Information and Resources","Health & Behavioral Health","Fuzzy match to Categ_Ref item ""Medical Education and Referrals"" (normalized distance=0.531).",1
+"Autism Support Services","Health & Behavioral Health","Fuzzy match to Categ_Ref item ""Addiction Support Services"" (normalized distance=0.231).",1
+"Autumn Village Senior Apartments","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Highlands Village Senior Apartments"" (normalized distance=0.229).",1
+"Bankruptcy Advice Helpline","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",1
+"Bereavement Support Groups (Program of Camarillo Hospice)","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""In-Home Support Program"" (normalized distance=0.673).",1
+"Big Brothers Big Sisters of Ventura County (BBSVC)","Food Assistance","Fuzzy match to Categ_Ref item ""Lighthouse Ministries Food Pantry"" (normalized distance=0.708).",1
+"Building and Safety - Ventura","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",1
+"Bus Services","Legal Services","Fuzzy match to Categ_Ref item ""Legal Services"" (normalized distance=0.357).",1
+"Business Financing","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Safe Place"" (normalized distance=0.722).",1
+"Business Loan Program","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Housing Assistance Program"" (normalized distance=0.385).",1
+"CA vs Hate","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Safe Place"" (normalized distance=0.7).",1
+"COVID-19 Statistics - Ventura County","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""2-1-1 STANISLAUS COUNTY (CALIFORNIA)"" (normalized distance=0.647).",1
+"COVID-19 Vaccine Information - Ventura County","Health & Behavioral Health","Fuzzy match to Categ_Ref item ""National Prevention Information Network (NPIN)"" (normalized distance=0.568).",1
+"Cal Grants","Utility & Financial Assistance","Keyword match: utility/financial assistance terms.",1
+"CalAIM Community Support Service - Medically Supported Food - Tangelo","Food Assistance","Keyword match: food assistance terms.",1
+"CalAIM Community Support Service - Medically Supported Food - Waters Edge","Utility & Financial Assistance","Keyword match: utility/financial assistance terms.",1
+"CalAIM Community Support Service - Personal Care & Homemaker Services","Health & Behavioral Health","Keyword match: health/behavioral health terms.",1
+"CalFresh Program","Food Assistance","Keyword match: food assistance terms.",1
+"CalHOPE Redline","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""995 HOPE Hotline"" (normalized distance=0.438).",1
+"CalWORKs","Utility & Financial Assistance","Exact normalized match with Categ_Ref.",1
+"California Wildfire Mitigation Program","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Minor Home Repair Program"" (normalized distance=0.579).",1
+"Camarillo Family YMCA","Food Assistance","Fuzzy match to Categ_Ref item ""Adopt a Family"" (normalized distance=0.619).",1
+"Cancer Related Supportive Services","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""In-Home Supportive Services (IHSS)"" (normalized distance=0.471).",1
+"Cancer Support Program","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""In-Home Support Program"" (normalized distance=0.304).",1
+"Caregiver Resource Centers","Aging, Disability & Caregiving Services","Keyword match: aging/disability/caregiving terms.",1
+"Cemetery and Funeral Bureau","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Homeless and Housing Services"" (normalized distance=0.655).",1
+"Centers for Family Health","Health & Behavioral Health","Keyword match: health/behavioral health terms.",1
+"Child Care On-Demand Services","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""Home Caregiver Services"" (normalized distance=0.448).",1
+"Citizenship and Immigration Client Assistance Program","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Housing Choice Voucher Rental Assistance Program"" (normalized distance=0.547).",1
+"City Clerk","Utility & Financial Assistance","Fuzzy match to Categ_Ref item ""CalWORKS"" (normalized distance=0.8).",1
+"City of Oxnard Office of the Mayor","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Victims of Crime Resource Center"" (normalized distance=0.735).",1
+"Civil Court","Legal Services","Keyword match: legal support terms.",1
+"Civil Rights Advocacy","Legal Services","Keyword match: legal support terms.",1
+"Cloth Diaper Program","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Home Repair Program"" (normalized distance=0.45).",1
+"Clutterers Anonymous","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Fisher House"" (normalized distance=0.75).",1
+"Co-Parenting Program/Conjoint Therapeutic","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",1
+"Co-Payment Assistance","Utility & Financial Assistance","Keyword match: utility/financial assistance terms.",1
+"Community Memorial Hospital - CalAIM Enhanced Care Management Services","Health & Behavioral Health","Keyword match: health/behavioral health terms.",1
+"Community Resource Center","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",1
+"Conejo Health - CalAIM Enhanced Care Management Services","Health & Behavioral Health","Keyword match: health/behavioral health terms.",1
+"Consult-A-Nurse","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Fisher House"" (normalized distance=0.667).",1
+"Consumer Affairs Services","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""Home Caregiver Services"" (normalized distance=0.48).",1
+"Consumer Information","Legal Services","Fuzzy match to Categ_Ref item ""Tenant Protection"" (normalized distance=0.65).",1
+"Coordinated Family Supports (CFS)","Health & Behavioral Health","Fuzzy match to Categ_Ref item ""Addiction Support Services"" (normalized distance=0.645).",1
+"Counseling Clinic","Health & Behavioral Health","Keyword match: health/behavioral health terms.",1
+"County Recorder","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Community Center"" (normalized distance=0.5).",1
+"County of Ventura Health Care Agency - CalAIM Enhanced Care Management Services","Health & Behavioral Health","Keyword match: health/behavioral health terms.",1
+"Covered California Marketplace","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Homeless Owner Pet Care"" (normalized distance=0.667).",1
+"Credit Counseling","Health & Behavioral Health","Keyword match: health/behavioral health terms.",1
+"Credit and Money Management Education","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Emergency and Disaster Information"" (normalized distance=0.703).",1
+"Crisis Texting Service","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",1
+"Crystal Meth Anonymous Help Line","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""Medicare Helpline"" (normalized distance=0.625).",1
+"DBSA Support Services","Health & Behavioral Health","Fuzzy match to Categ_Ref item ""Addiction Support Services"" (normalized distance=0.308).",1
+"Debt Management","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Sheriff Department"" (normalized distance=0.611).",1
+"Department of Real Estate (DRE)","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""Department of Aging"" (normalized distance=0.483).",1
+"Department of Rehabilitation","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""Department of Aging"" (normalized distance=0.429).",1
+"Detention Services Division - Jail Facilities","Legal Services","Fuzzy match to Categ_Ref item ""Native American Legal Services"" (normalized distance=0.698).",1
+"Dial-A-Ride Paratransit Service","Aging, Disability & Caregiving Services","Keyword match: aging/disability/caregiving terms.",1
+"Dial-A-Ride/ADA Paratransit","Aging, Disability & Caregiving Services","Keyword match: aging/disability/caregiving terms.",1
+"Digital Literacy Program","Education & Employment Support","Keyword match: education/employment terms.",1
+"Disability Protection and Advocacy","Aging, Disability & Caregiving Services","Keyword match: aging/disability/caregiving terms.",1
+"Disaster Ready","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""Dial-A-Ride"" (normalized distance=0.571).",1
+"Disaster Relief Services","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""Disability Resource Services"" (normalized distance=0.429).",1
+"Disaster Response","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Fisher House"" (normalized distance=0.529).",1
+"Disaster Response Services","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""Disability Resource Services"" (normalized distance=0.357).",1
+"Discount Prescription Assistance","Utility & Financial Assistance","Fuzzy match to Categ_Ref item ""Utility Assistance"" (normalized distance=0.531).",1
+"District 1 - Supervisor Matt LaVere","Health & Behavioral Health","Fuzzy match to Categ_Ref item ""Addiction Support Services"" (normalized distance=0.697).",1
+"District Attorney Services","Legal Services","Keyword match: legal support terms.",1
+"Divorce Recovery Workshops","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""Home Caregiver Services"" (normalized distance=0.654).",1
+"Domestic Violence Survivors Support Group","Health & Behavioral Health","Keyword match: health/behavioral health terms.",1
+"Drug/Alcohol Education Counseling and Testing","Health & Behavioral Health","Keyword match: health/behavioral health terms.",1
+"Earth 911 Recycling Search","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""Area 12 Agency on Aging"" (normalized distance=0.692).",1
+"Eating Disorders Support Group","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""In-Home Support Program"" (normalized distance=0.533).",1
+"Eldercare Financial Assistance Locator","Utility & Financial Assistance","Keyword match: utility/financial assistance terms.",1
+"Eldercare Locator","Aging, Disability & Caregiving Services","Keyword match: aging/disability/caregiving terms.",1
+"Emergency Assistance","Utility & Financial Assistance","Fuzzy match to Categ_Ref item ""General Assistance"" (normalized distance=0.35).",1
+"Emergency Assistance Services","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Housing Assistance Program"" (normalized distance=0.517).",1
+"Engage Volunteer Opportunities","Legal Services","Fuzzy match to Categ_Ref item ""Tenant Protection"" (normalized distance=0.667).",1
+"Environmental Health Division","Health & Behavioral Health","Keyword match: health/behavioral health terms.",1
+"Esperanza Project","Legal Services","Fuzzy match to Categ_Ref item ""Tenant Protection"" (normalized distance=0.588).",1
+"Extra Help with Medicare Prescription Drug Plan Costs","Aging, Disability & Caregiving Services","Keyword match: aging/disability/caregiving terms.",1
+"Family Harmony Program Parenting Classes","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",1
+"Family Services Program","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Home Repair Program"" (normalized distance=0.478).",1
+"Family Support Group","Health & Behavioral Health","Fuzzy match to Categ_Ref item ""Family PACT"" (normalized distance=0.55).",1
+"Farm Labor Housing","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",1
+"Fellowships and Grants","Utility & Financial Assistance","Keyword match: utility/financial assistance terms.",1
+"Financial Fraud Reporting","Utility & Financial Assistance","Keyword match: utility/financial assistance terms.",1
+"Financial Management and Credit Counseling Services","Utility & Financial Assistance","Keyword match: utility/financial assistance terms.",1
+"Financial Wellness Counseling","Utility & Financial Assistance","Keyword match: utility/financial assistance terms.",1
+"Fire Department","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Sheriff Department"" (normalized distance=0.333).",1
+"Food Addicts Meetings","Food Assistance","Keyword match: food assistance terms.",1
+"Food Distribution","Food Assistance","Keyword match: food assistance terms.",1
+"Food Distribution Services","Food Assistance","Keyword match: food assistance terms.",1
+"Food Pantry- AHA @ Pacific Point Apts","Food Assistance","Keyword match: food assistance terms.",1
+"Food Pantry-Beach Side Fellowship","Food Assistance","Keyword match: food assistance terms.",1
+"Food Pantry-Catholic Charities Moorpark","Food Assistance","Keyword match: food assistance terms.",1
+"Food Pantry-Colonia Village Tenant Association","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",1
+"Food Pantry-Fillmore Church of Christ","Food Assistance","Keyword match: food assistance terms.",1
+"Food Pantry-First Christian Church","Food Assistance","Keyword match: food assistance terms.",1
+"Food Pantry-Fleet Reserve","Food Assistance","Keyword match: food assistance terms.",1
+"Food Pantry-Grace Harvest Church","Food Assistance","Keyword match: food assistance terms.",1
+"Food Pantry-Help of Ojai","Food Assistance","Keyword match: food assistance terms.",1
+"Food Pantry-New Life Community Church","Food Assistance","Keyword match: food assistance terms.",1
+"Food Pantry-Produce-Rodney Fernandez Apartments","Food Assistance","Keyword match: food assistance terms.",1
+"Food Pantry-Produce-St. Thomas Aquinas/SVDP","Food Assistance","Keyword match: food assistance terms.",1
+"Food Pantry-Rio School","Food Assistance","Keyword match: food assistance terms.",1
+"Food Pantry-SEWA International","Food Assistance","Keyword match: food assistance terms.",1
+"Food Pantry-Shelter Care Resources @ Calvary Church Oxnard","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",1
+"Food Pantry-The River Community","Food Assistance","Keyword match: food assistance terms.",1
+"Food Rescue","Food Assistance","Keyword match: food assistance terms.",1
+"Food and Drug Branch","Food Assistance","Keyword match: food assistance terms.",1
+"Foster Youth/Resource Family Services","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""Disability Resource Services"" (normalized distance=0.459).",1
+"Foster and Kinship Care Education Program","Utility & Financial Assistance","Fuzzy match to Categ_Ref item ""Weatherization Program"" (normalized distance=0.585).",1
+"Fraud Reporting","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Child Abuse Reporting"" (normalized distance=0.429).",1
+"Freeway Service Patrol (FSP)","Legal Services","Fuzzy match to Categ_Ref item ""Legal Services"" (normalized distance=0.577).",1
+"General COVID-19 Information in California","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""2-1-1 ALAMEDA COUNTY (CALIFORNIA)"" (normalized distance=0.595).",1
+"Goodwill Industries Thrift Store","Food Assistance","Fuzzy match to Categ_Ref item ""Lighthouse Ministries Food Pantry"" (normalized distance=0.667).",1
+"Guaranteed Ride Home (GRH) Program","Utility & Financial Assistance","Fuzzy match to Categ_Ref item ""Weatherization Program"" (normalized distance=0.562).",1
+"Guardian House","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",1
+"HELPLINE (NEW MEXICO)","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",1
+"Hazel Hawkins Hospital","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Affordable Housing"" (normalized distance=0.727).",1
+"Healthcare Workforce Loan Repayment and Scholarship Program","Utility & Financial Assistance","Keyword match: utility/financial assistance terms.",1
+"Help Center","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Homeless Shelter"" (normalized distance=0.5).",1
+"Hollister Paratransit Service","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Homeless and Housing Services"" (normalized distance=0.552).",1
+"Home Delivered Meals Program","Food Assistance","Keyword match: food assistance terms.",1
+"Home Energy Assistance Program (HEAP)","Utility & Financial Assistance","Keyword match: utility/financial assistance terms.",1
+"Homebuyer Assistance Program","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Housing Assistance Program"" (normalized distance=0.25).",1
+"Homeless Veteran Programs","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",1
+"Hotline and Case Management Services for Child Prostitutes","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",1
+"Housing Counseling","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",1
+"Human Resources Hotline","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",1
+"Identity Theft Prevention Information","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Emergency and Disaster Information"" (normalized distance=0.568).",1
+"Identity Theft Reporting and Recovery","Education & Employment Support","Fuzzy match to Categ_Ref item ""Child Care Resource and Referral"" (normalized distance=0.649).",1
+"Immigrant Policy Center","Utility & Financial Assistance","Keyword match: utility/financial assistance terms.",1
+"Immigration Legal Services","Legal Services","Keyword match: legal support terms.",1
+"Immigration Legal Services (DACA assistance)","Legal Services","Keyword match: legal support terms.",1
+"Immigration Services","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Social Services"" (normalized distance=0.45).",1
+"In Home Support Services (IHSS)","Aging, Disability & Caregiving Services","Keyword match: aging/disability/caregiving terms.",1
+"Independent Living Program & Extended Foster Care Program","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Housing Choice Voucher Rental Assistance Program"" (normalized distance=0.678).",1
+"International Helpline Search","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",1
+"John K. Flynn Community Clinic (Ambulatory Care Clinic)","Health & Behavioral Health","Keyword match: health/behavioral health terms.",1
+"Koinonia Family Services - CalAIM Enhanced Care Management Services","Health & Behavioral Health","Keyword match: health/behavioral health terms.",1
+"Las Posas Family Medical Group (Ambulatory Care Clinic)","Health & Behavioral Health","Keyword match: health/behavioral health terms.",1
+"Law Enforcement - Patrol Division","Legal Services","Keyword match: legal support terms.",1
+"Law Enforcement Services","Legal Services","Keyword match: legal support terms.",1
+"Lawyer and Attorney Complaints","Legal Services","Keyword match: legal support terms.",1
+"Legal Aid Services - Lake County","Legal Services","Keyword match: legal support terms.",1
+"Library Services","Legal Services","Fuzzy match to Categ_Ref item ""Legal Services"" (normalized distance=0.312).",1
+"Life Recovery Program","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Home Repair Program"" (normalized distance=0.381).",1
+"Local Legal Resource Directory","Legal Services","Keyword match: legal support terms.",1
+"Low Cost Dental Services","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Social Services"" (normalized distance=0.458).",1
+"MOVE Program","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""VetFam"" (normalized distance=0.667).",1
+"Meals On Wheels","Food Assistance","Keyword match: food assistance terms.",1
+"Medi-Cal Member and Provider Helpline","Health & Behavioral Health","Keyword match: health/behavioral health terms.",1
+"Medical Board","Health & Behavioral Health","Keyword match: health/behavioral health terms.",1
+"Men and Womens Sober Living","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""Department of Aging"" (normalized distance=0.593).",1
+"Migrant Housing (Farm Workers)","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",1
+"Millenium Care - CalAIM Enhanced Care Management Services","Health & Behavioral Health","Keyword match: health/behavioral health terms.",1
+"Mommy 2 Be","Health & Behavioral Health","Fuzzy match to Categ_Ref item ""Medi-Cal"" (normalized distance=0.8).",1
+"Moorpark Community Service Center","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Community Center"" (normalized distance=0.515).",1
+"Murphys Senior Center","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Enrichment Center"" (normalized distance=0.524).",1
+"NORTH SOUND 2-1-1 (WASHINGTON)","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",1
+"National Infant Safe Sleep Initiative","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""National Homeless Youth Crisis Hotline"" (normalized distance=0.632).",1
+"National Maternal Mental Health Hotline","Health & Behavioral Health","Keyword match: health/behavioral health terms.",1
+"National Sexual Assault Hotline","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",1
+"Neighbors Helping Neighbors","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""Medicare Helpline"" (normalized distance=0.667).",1
+"Office of the Attorney General","Legal Services","Keyword match: legal support terms.",1
+"Office of the Mayor","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Homeless Shelter"" (normalized distance=0.737).",1
+"Ojai Police Department","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",1
+"Ombudsman Program-Long Term Care Services","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""Adult Protective Services"" (normalized distance=0.585).",1
+"Optoutprescreen.com","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Police Services"" (normalized distance=0.737).",1
+"Outpatient Alcohol and Drug Treatment Services","Health & Behavioral Health","Keyword match: health/behavioral health terms.",1
+"Oxnard Family Circle - CalAIM Enhanced Care Management Services","Health & Behavioral Health","Keyword match: health/behavioral health terms.",1
+"Oxnard Family Circle Adult Day Health Care Center (ADHC)","Health & Behavioral Health","Keyword match: health/behavioral health terms.",1
+"Oxnard Homeless Prevention Program","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",1
+"Oxnard Youth Centers","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Enrichment Center"" (normalized distance=0.55).",1
+"PA 2-1-1 SOUTHWEST (PENNSYLVANIA)","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",1
+"PG&E Backup Power Options in High Fire Risk Areas","Utility & Financial Assistance","Fuzzy match to Categ_Ref item ""PG&E General Power Outage Information"" (normalized distance=0.566).",1
+"Partner -Quality Cleaning Maid to Order","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Community Center"" (normalized distance=0.711).",1
+"Prescription Eyeglasses Voucher Program","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",1
+"Project Assist","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Fisher House"" (normalized distance=0.786).",1
+"Promoviendo","Health & Behavioral Health","Fuzzy match to Categ_Ref item ""Medi-Cal"" (normalized distance=0.818).",1
+"Public Authority","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""Dial-A-Ride"" (normalized distance=0.688).",1
+"Public Health Clinic Services","Health & Behavioral Health","Keyword match: health/behavioral health terms.",1
+"Public Transit Division - Moorpark Transit MCT On Demand Senior Dial-A-Ride & Disabled Paratransit","Aging, Disability & Caregiving Services","Keyword match: aging/disability/caregiving terms.",1
+"Public Works","Utility & Financial Assistance","Fuzzy match to Categ_Ref item ""CalWORKS"" (normalized distance=0.5).",1
+"Public Works Department - Administration","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""Department of Aging"" (normalized distance=0.658).",1
+"Queer Adulting","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Fisher House"" (normalized distance=0.786).",1
+"REACH Services","Legal Services","Fuzzy match to Categ_Ref item ""Legal Services"" (normalized distance=0.286).",1
+"Rape Crisis Center","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",1
+"Re-Entry Services","Legal Services","Fuzzy match to Categ_Ref item ""Legal Services"" (normalized distance=0.412).",1
+"Reduced Fee or Free ID Card Voucher (DMV)","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",1
+"Redwood Middle School (6-8)","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Affordable Housing"" (normalized distance=0.72).",1
+"Report Welfare Fraud","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""Department of Aging"" (normalized distance=0.7).",1
+"Residential Program","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Home Repair Program"" (normalized distance=0.526).",1
+"Residential Rebates for Smart Thermostat or Water Heater","Utility & Financial Assistance","Keyword match: utility/financial assistance terms.",1
+"Resource Family Evaluation and Support (Foster Care & Adoption Services)","Health & Behavioral Health","Fuzzy match to Categ_Ref item ""Road to Recovery Cancer Patient Services"" (normalized distance=0.653).",1
+"Respite Care","Health & Behavioral Health","Fuzzy match to Categ_Ref item ""Medi-Cal"" (normalized distance=0.583).",1
+"Road Maintenance/Closures","Health & Behavioral Health","Fuzzy match to Categ_Ref item ""Home Health Care"" (normalized distance=0.68).",1
+"SANTA CRUZ COUNTY 2-1-1 (CALIFORNIA)","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",1
+"SCE Back-up Power Options in High Fire Risk Areas","Health & Behavioral Health","Fuzzy match to Categ_Ref item ""Medical Education and Referrals"" (normalized distance=0.694).",1
+"SCE General Power Outage Information","Utility & Financial Assistance","Fuzzy match to Categ_Ref item ""PG&E General Power Outage Information"" (normalized distance=0.171).",1
+"SJRMC - Diabetes Empowerment and Education Class","Health & Behavioral Health","Fuzzy match to Categ_Ref item ""Crisis Assessment & Intervention Program"" (normalized distance=0.696).",1
+"SJRMC-Community Health Education Department","Health & Behavioral Health","Keyword match: health/behavioral health terms.",1
+"Safe Harbor","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Safe Place"" (normalized distance=0.545).",1
+"Safety Training","Education & Employment Support","Keyword match: education/employment terms.",1
+"Sandbags","Utility & Financial Assistance","Fuzzy match to Categ_Ref item ""CalWORKS"" (normalized distance=0.75).",1
+"Sarahs House Maternity Homes","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",1
+"Scholarship Program","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Home Repair Program"" (normalized distance=0.474).",1
+"Secure Lives for Immigrant Women Violence Against Women ACT (V.A.W.A.)","Utility & Financial Assistance","Keyword match: utility/financial assistance terms.",1
+"Senior Advocates","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Social Services"" (normalized distance=0.625).",1
+"ServSafe Training and Certification Programs","Education & Employment Support","Keyword match: education/employment terms.",1
+"Simi Valley Senior Center","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Community Center"" (normalized distance=0.6).",1
+"Small Business Assistance","Utility & Financial Assistance","Fuzzy match to Categ_Ref item ""Utility Assistance"" (normalized distance=0.48).",1
+"Small Claims Court","Legal Services","Keyword match: legal support terms.",1
+"Solutions for Violence","Health & Behavioral Health","Keyword match: health/behavioral health terms.",1
+"Start Your Recovery","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Safe Place"" (normalized distance=0.737).",1
+"State Medicaid Agency Providers","Legal Services","Fuzzy match to Categ_Ref item ""Native American Legal Services"" (normalized distance=0.581).",1
+"Steven and Michael Hochman Medical Corporation - CalAIM Enhanced Care Management Services","Health & Behavioral Health","Keyword match: health/behavioral health terms.",1
+"Strengthening VC Families","Aging, Disability & Caregiving Services","Fuzzy match to Categ_Ref item ""Area Agency on Aging"" (normalized distance=0.68).",1
+"Student Services","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Social Services"" (normalized distance=0.375).",1
+"Subsidized General Alternate Payment Child Care Programs","Utility & Financial Assistance","Keyword match: utility/financial assistance terms.",1
+"Supported Employment Program","Education & Employment Support","Keyword match: education/employment terms.",1
+"Supportive Services","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Police Services"" (normalized distance=0.316).",1
+"Supportive Services for Veterans And Their Families (SSVF)","Legal Services","Fuzzy match to Categ_Ref item ""Native American Legal Services"" (normalized distance=0.696).",1
+"Tattoo Removal Program","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Home Repair Program"" (normalized distance=0.5).",1
+"Teen Parenting Class","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",1
+"Telebehavioral Health Clinic","Health & Behavioral Health","Keyword match: health/behavioral health terms.",1
+"The Wellness Center","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Homeless Shelter"" (normalized distance=0.474).",1
+"Thrift Store","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""211.org"" (normalized distance=0.75).",1
+"Ticket to Work","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Fisher House"" (normalized distance=0.714).",1
+"TrustLine Registry","Utility & Financial Assistance","Fuzzy match to Categ_Ref item ""Utility Assistance"" (normalized distance=0.722).",1
+"UNITED WAY 2-1-1 OF NORTHEAST FLORIDA","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",1
+"USDA National Hunger Hotline","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",1
+"Urgent Care","Health & Behavioral Health","Fuzzy match to Categ_Ref item ""Medi-Cal"" (normalized distance=0.636).",1
+"Utility Regulation and Complaints","Utility & Financial Assistance","Keyword match: utility/financial assistance terms.",1
+"VCMC Psychiatric Services","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Social Services"" (normalized distance=0.48).",1
+"VCTC Regional Transit Information Center (RTIC)","Health & Behavioral Health","Fuzzy match to Categ_Ref item ""National Prevention Information Network (NPIN)"" (normalized distance=0.489).",1
+"Valley Dial-A-Ride & Fixed Route Service","Aging, Disability & Caregiving Services","Keyword match: aging/disability/caregiving terms.",1
+"Ventura Family YMCA","Food Assistance","Fuzzy match to Categ_Ref item ""Adopt a Family"" (normalized distance=0.579).",1
+"Ventura Springs Veteran Housing","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",1
+"Veterans Connection","Legal Services","Fuzzy match to Categ_Ref item ""Tenant Protection"" (normalized distance=0.421).",1
+"Veterans Housing","Housing & Homelessness Services","Keyword match: housing/homelessness terms.",1
+"Volunteer Hospice Care for Critically Ill (A program of Camarillo Hospice)","Utility & Financial Assistance","Fuzzy match to Categ_Ref item ""Low Income Home Energy Assistance Program (LIHEAP)"" (normalized distance=0.708).",1
+"Volunteer Income Tax Assistance (VITA) Free Tax Preparation","Utility & Financial Assistance","Keyword match: utility/financial assistance terms.",1
+"WYOMING 2-1-1","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",1
+"West Ventura Medical Clinic (Ambulatory Care Clinic)","Health & Behavioral Health","Keyword match: health/behavioral health terms.",1
+"Westlake High School (9-12)","Legal Services","Fuzzy match to Categ_Ref item ""Tenant Rights Hotline"" (normalized distance=0.6).",1
+"Wilson Senior Center","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Community Center"" (normalized distance=0.5).",1
+"Women Infants and Children (WIC) Nutrition Program","Food Assistance","Keyword match: food assistance terms.",1
+"Womens Sober Living Home","Housing & Homelessness Services","Fuzzy match to Categ_Ref item ""Homeless Owner Pet Care"" (normalized distance=0.667).",1
+"Work Release","Crisis, Safety & Navigation Services","Fuzzy match to Categ_Ref item ""Safe Place"" (normalized distance=0.667).",1
+"Workers Comp Information & Assistance Unit","Crisis, Safety & Navigation Services","Keyword match: crisis/navigation/safety terms.",1
+"Workforce Training","Education & Employment Support","Keyword match: education/employment terms.",1
+"Youth and Family Impact","Health & Behavioral Health","Fuzzy match to Categ_Ref item ""Family PACT"" (normalized distance=0.522).",1
