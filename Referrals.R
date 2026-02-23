@@ -651,7 +651,7 @@ load_referral_category_map <- function(target_sheet_id, categories_sheet_name) {
   )
   raw_category_map <- as.data.frame(raw_category_map, stringsAsFactors = FALSE)
 
-  normalized_names <- tolower(gsub("[^a-z]", "", names(raw_category_map)))
+  normalized_names <- gsub("[^a-z]", "", tolower(names(raw_category_map)))
   referral_col_idx <- which(normalized_names == "referral")[1]
   category_col_idx <- which(normalized_names == "category")[1]
 
