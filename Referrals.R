@@ -1,13 +1,16 @@
 # ==============================================================================
-# REFERRALS ETL SCRIPT
+# REFERRALS ETL SCRIPT - 2026-02-23
 # ==============================================================================
-# Section index:
-# 0. Setup and Inputs
-# 1. Master Dataset
-# 2. Participant Dataset
-# 3. Referral Dataset
-# 4. Fact Dataset
-# 5. Export
+# Section Index
+# 0. Google Authentication
+# 1. Inputs
+# 2. File Reading
+# 3. Master Dataset
+# 4. Participant Dataset
+# 5. Referral Dataset
+# 6. Fact Dataset
+# 7. Export
+# ==============================================================================
 
 # ==============================================================================
 # Session Cleanup
