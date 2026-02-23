@@ -739,6 +739,33 @@ referral_data_frame <- build_referral_data_frame(
 )
 
 # ==============================================================================
+# 3.2 attach referral ids to Master next to ReferralsMade
+# ==============================================================================
+add_ref_ids_to_master <- function(master_df, referral_df) {
+  ref_ids_by_encounter <- referral_df |>
+    dplyr::group_by(EnID) |>
+    dplyr::summarise(
+      RefID = paste(RefID, collapse = "; "),
+      .groups = "drop"
+    )
+
+  master_with_ref_ids <- master_df |>
+    dplyr::select(-dplyr::any_of("RefID")) |>
+    dplyr::left_join(ref_ids_by_encounter, by = "EnID")
+
+  master_with_ref_ids$RefID[is.na(master_with_ref_ids$RefID)] <- ""
+
+  if ("ReferralsMade" %in% names(master_with_ref_ids)) {
+    master_with_ref_ids <- master_with_ref_ids |>
+      dplyr::relocate(RefID, .after = ReferralsMade)
+  }
+
+  return(master_with_ref_ids)
+}
+
+master_data_frame <- add_ref_ids_to_master(master_data_frame, referral_data_frame)
+
+# ==============================================================================
 # ==============================================================================
 # 4. CREATE FACT DATASET
 # ==============================================================================
