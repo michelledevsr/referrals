@@ -655,8 +655,17 @@ load_referral_category_map <- function(target_sheet_id, categories_sheet_name) {
   )
   raw_category_map <- as.data.frame(raw_category_map, stringsAsFactors = FALSE)
 
-  if (all(c("Referral", "Category") %in% names(raw_category_map))) {
-    category_map <- raw_category_map[, c("Referral", "Category"), drop = FALSE]
+  normalized_names <- tolower(gsub("[^a-z]", "", names(raw_category_map)))
+  referral_col_idx <- which(normalized_names == "referral")[1]
+  category_col_idx <- which(normalized_names == "category")[1]
+
+  if (!is.na(referral_col_idx) && !is.na(category_col_idx)) {
+    category_map <- raw_category_map[
+      ,
+      c(referral_col_idx, category_col_idx),
+      drop = FALSE
+    ]
+    names(category_map) <- c("Referral", "Category")
   } else {
     stacked <- stack(raw_category_map)
     names(stacked) <- c("Referral", "Category")
@@ -684,6 +693,15 @@ referral_category_map <- load_referral_category_map(
 )
 
 build_referral_data_frame <- function(master_df, category_map) {
+  normalize_referral_key <- function(x) {
+    x <- as.character(x)
+    x <- trimws(x)
+    x <- gsub("\\s+", " ", x)
+    x <- tolower(x)
+
+    return(x)
+  }
+
   required_master_columns <- c("EnID", "ReferralsMade")
   if (!all(required_master_columns %in% names(master_df))) {
     stop("master_data_frame must include EnID and ReferralsMade columns.")
@@ -716,8 +734,16 @@ build_referral_data_frame <- function(master_df, category_map) {
     return(empty_referral_df)
   }
 
+  category_lookup <- category_map |>
+    dplyr::mutate(referral_key = normalize_referral_key(Referral)) |>
+    dplyr::filter(!is.na(referral_key), referral_key != "") |>
+    dplyr::distinct(referral_key, .keep_all = TRUE) |>
+    dplyr::select(referral_key, Category)
+
   referral_df <- referral_df |>
-    dplyr::left_join(category_map, by = "Referral")
+    dplyr::mutate(referral_key = normalize_referral_key(Referral)) |>
+    dplyr::left_join(category_lookup, by = "referral_key") |>
+    dplyr::select(-referral_key)
 
   referral_df$Category <- as.character(referral_df$Category)
 
