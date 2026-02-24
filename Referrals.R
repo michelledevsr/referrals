@@ -923,11 +923,43 @@ export_targets <- list(
   list(data = fact_data_frame, sheet = fact_tab)
 )
 
+write_sheet_in_chunks <- function(data_frame, ss, sheet_name, chunk_size = 500) {
+  if (nrow(data_frame) == 0) {
+    sheet_write(data_frame, ss = ss, sheet = sheet_name)
+
+    return(invisible(NULL))
+  }
+
+  # Initialize the sheet with headers only.
+  sheet_write(data_frame[0, , drop = FALSE], ss = ss, sheet = sheet_name)
+
+  total_rows <- nrow(data_frame)
+  start_rows <- seq(1, total_rows, by = chunk_size)
+
+  for (start_row in start_rows) {
+    end_row <- min(start_row + chunk_size - 1, total_rows)
+    chunk <- data_frame[start_row:end_row, , drop = FALSE]
+    target_row <- start_row + 1 # account for the header in row 1
+
+    range_write(
+      ss = ss,
+      data = chunk,
+      sheet = sheet_name,
+      range = paste0("A", target_row),
+      col_names = FALSE,
+      reformat = FALSE
+    )
+  }
+
+  return(invisible(NULL))
+}
+
 for (target in export_targets) {
-  sheet_write(
-    target$data,
+  write_sheet_in_chunks(
+    data_frame = target$data,
     ss = target_gsheet,
-    sheet = target$sheet
+    sheet_name = target$sheet,
+    chunk_size = 500
   )
 }
 # ==============================================================================
