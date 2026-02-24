@@ -50,6 +50,13 @@ load_required_packages(required_packages)
 
 
 # ==============================================================================
+# Package Options
+# ==============================================================================
+options(googlesheets4_quiet = TRUE)
+# ==============================================================================
+
+
+# ==============================================================================
 # 0. Google Authentication
 # ==============================================================================
 
@@ -924,22 +931,38 @@ export_targets <- list(
 )
 
 write_sheet_in_chunks <- function(data_frame, ss, sheet_name, chunk_size = 500) {
-  if (nrow(data_frame) == 0) {
-    sheet_write(data_frame, ss = ss, sheet = sheet_name)
+  total_rows <- nrow(data_frame)
 
+  if (total_rows == 0) {
+    sheet_write(data_frame, ss = ss, sheet = sheet_name)
+    cat("Sheet created empty: ", sheet_name, "\n")
     return(invisible(NULL))
   }
-
-  # Initialize the sheet with headers only.
+  # initialize sheet with headers only
   sheet_write(data_frame[0, , drop = FALSE], ss = ss, sheet = sheet_name)
 
-  total_rows <- nrow(data_frame)
-  start_rows <- seq(1, total_rows, by = chunk_size)
+  cat("Writing to the tab: ", sheet_name, "\n", sep = "")
 
-  for (start_row in start_rows) {
+  # batch info
+  batch_starts <- seq(1, total_rows, by = chunk_size)
+  num_batches <- length(batch_starts)
+
+  cat("Total batches: ", num_batches, "\n")
+
+  batch_index <- 1
+
+  for (start_row in batch_starts) {
     end_row <- min(start_row + chunk_size - 1, total_rows)
     chunk <- data_frame[start_row:end_row, , drop = FALSE]
-    target_row <- start_row + 1 # account for the header in row 1
+
+    cat(
+      paste0(
+        "- Writing batch ", batch_index, " of ", num_batches, 
+        " (rows ", start_row, " to ", end_row, ")\n"
+      )
+    )
+
+    target_row <- start_row + 1  # Leave header on row 1
 
     range_write(
       ss = ss,
@@ -949,7 +972,11 @@ write_sheet_in_chunks <- function(data_frame, ss, sheet_name, chunk_size = 500) 
       col_names = FALSE,
       reformat = FALSE
     )
+
+    batch_index <- batch_index + 1
   }
+
+  cat("✔ The data has been written to the tab ", sheet_name, "\n", sep = "")
 
   return(invisible(NULL))
 }
