@@ -26,6 +26,11 @@ In addition, it must read a categories tab (`Categ_Ref`) to classify referrals.
 
 The process must automatically read multiple source files (Google Sheets/Excel), using the configured tab for each source, and merge them into a single workflow.
 
+`Categ_Ref` is the official referral-category dictionary and must be maintained in long format with exactly these columns:
+
+- `Referral`
+- `Category`
+
 ## 4. Functional requirements
 
 ### 4.1 Initial read and preparation
@@ -44,6 +49,7 @@ The `Master` table must:
 - standardize key fields (for example: city, county, postal code, language, contact method, gender, age),
 - normalize missing values,
 - keep the original `ReferralsMade` column,
+- add a `RefID` column next to `ReferralsMade`, using the referral IDs generated in `Referral`,
 - create additional columns for each unique value found in `ReferralsMade`, marking `X` when applicable,
 - add an incremental encounter identifier named `EnID`.
 
@@ -66,14 +72,16 @@ Requirements:
 
 - final columns: `EnID`, `RefID`, `Referral`, `Category`,
 - skip rows with no referral,
-- map category using the dictionary loaded from `Categ_Ref`,
-- when no category exists, use `--`.
+- map category using the dictionary loaded from `Categ_Ref` (long format),
+- use normalized matching for referral keys (trimmed/lowercase/normalized spaces) to reduce mapping misses,
+- avoid invalid category placeholders caused by parsing issues (for example, `Category = "Referral"` for all rows).
 
 ### 4.6 Build `Fact`
 
 Create an analysis-ready fact dataset with columns:
 
-- `Date`
+- `CallStartDate`
+- `CallEndDate`
 - `EnID`
 - `Narrative`
 - `ContactType`
@@ -98,3 +106,14 @@ The process must produce:
 1. Updated target Google Sheet (`Master`, `Part`, `Referral`, `Fact`).
 2. Consistent data structure for analysis.
 3. Clear requirements documentation for team reference (`docs/requirements.md`).
+
+## 7. Latest requirements added
+
+The following requirements were added after initial implementation and are now part of the expected behavior:
+
+### 02/23/2026
+
+1. `Master` must include `RefID` next to `ReferralsMade`.
+2. `Fact` must include `CallStartDate` and `CallEndDate` as datetime fields; `Date` is no longer required.
+3. `Categ_Ref` must be treated as a long-format dictionary (`Referral`, `Category`).
+4. Category mapping in `Referral` must use robust matching compatible with the current `Categ_Ref` format.
