@@ -50,6 +50,13 @@ load_required_packages(required_packages)
 
 
 # ==============================================================================
+# Package Options
+# ==============================================================================
+options(googlesheets4_quiet = TRUE)
+# ==============================================================================
+
+
+# ==============================================================================
 # 0. Google Authentication
 # ==============================================================================
 
@@ -923,11 +930,63 @@ export_targets <- list(
   list(data = fact_data_frame, sheet = fact_tab)
 )
 
+write_sheet_in_chunks <- function(data_frame, ss, sheet_name, chunk_size = 500) {
+  total_rows <- nrow(data_frame)
+
+  if (total_rows == 0) {
+    sheet_write(data_frame, ss = ss, sheet = sheet_name)
+    cat("Sheet created empty: ", sheet_name, "\n")
+    return(invisible(NULL))
+  }
+  # initialize sheet with headers only
+  sheet_write(data_frame[0, , drop = FALSE], ss = ss, sheet = sheet_name)
+
+  cat("Writing to the tab: ", sheet_name, "\n", sep = "")
+
+  # batch info
+  batch_starts <- seq(1, total_rows, by = chunk_size)
+  num_batches <- length(batch_starts)
+
+  cat("Total batches: ", num_batches, "\n")
+
+  batch_index <- 1
+
+  for (start_row in batch_starts) {
+    end_row <- min(start_row + chunk_size - 1, total_rows)
+    chunk <- data_frame[start_row:end_row, , drop = FALSE]
+
+    cat(
+      paste0(
+        "- Writing batch ", batch_index, " of ", num_batches, 
+        " (rows ", start_row, " to ", end_row, ")\n"
+      )
+    )
+
+    target_row <- start_row + 1  # Leave header on row 1
+
+    range_write(
+      ss = ss,
+      data = chunk,
+      sheet = sheet_name,
+      range = paste0("A", target_row),
+      col_names = FALSE,
+      reformat = FALSE
+    )
+
+    batch_index <- batch_index + 1
+  }
+
+  cat("✔ The data has been written to the tab ", sheet_name, "\n", sep = "")
+
+  return(invisible(NULL))
+}
+
 for (target in export_targets) {
-  sheet_write(
-    target$data,
+  write_sheet_in_chunks(
+    data_frame = target$data,
     ss = target_gsheet,
-    sheet = target$sheet
+    sheet_name = target$sheet,
+    chunk_size = 500
   )
 }
 # ==============================================================================
