@@ -544,10 +544,40 @@ standardize_master_datetime_columns <- function(df, column_names) {
   return(df)
 }
 
+coerce_numeric_column <- function(x) {
+  x <- normalize_missing_values(x)
+  x <- gsub(",", "", x)
+  x <- suppressWarnings(as.numeric(x))
+
+  return(x)
+}
+
+coerce_master_numeric_columns <- function(df) {
+  # Keep PostalCode and PhoneExtension as text to preserve semantics.
+  numeric_columns <- c(
+    "CallLength",
+    "Demographics...Callers.Age",
+    "CallReportNum",
+    "EnteredByWorkerNum",
+    "EnteredOn",
+    "OrgNum",
+    "ReportVersionNum"
+  )
+
+  for (column_name in numeric_columns) {
+    if (column_name %in% names(df)) {
+      df[[column_name]] <- coerce_numeric_column(df[[column_name]])
+    }
+  }
+
+  return(df)
+}
+
 master_data_frame <- standardize_master_datetime_columns(
   master_data_frame,
   c("CallDateAndTimeStart", "CallDateAndTimeEnd")
 )
+master_data_frame <- coerce_master_numeric_columns(master_data_frame)
 # ==============================================================================
 
 # ==============================================================================
