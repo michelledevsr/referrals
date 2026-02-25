@@ -483,23 +483,55 @@ standardize_master_fields <- function(df) {
 
 master_data_frame <- standardize_master_fields(master_data_frame)
 
-# convert unix timestamps to POSIXct so Google Sheets stores real datetimes
+# Parse mixed datetime inputs (Unix sec/ms/us, Excel serial, or text).
 unix_to_posixct <- function(x, tz = "UTC") {
-  x <- normalize_missing_values(x)
-  numeric_value <- suppressWarnings(as.numeric(x))
-  datetime_value <- as.POSIXct(
-    rep(NA_real_, length(numeric_value)),
-    origin = "1970-01-01",
-    tz = tz
-  )
-  valid_idx <- !is.na(numeric_value)
-  datetime_value[valid_idx] <- as.POSIXct(
-    numeric_value[valid_idx],
-    origin = "1970-01-01",
-    tz = tz
-  )
+  if (inherits(x, "POSIXct")) {
+    return(as.POSIXct(x, tz = tz))
+  }
 
-  return(datetime_value)
+  x_chr <- trimws(as.character(normalize_missing_values(x)))
+  out <- as.POSIXct(rep(NA_real_, length(x_chr)), origin = "1970-01-01", tz = tz)
+  num <- suppressWarnings(as.numeric(x_chr))
+  num_idx <- !is.na(num)
+
+  if (any(num_idx)) {
+    num_vals <- num[num_idx]
+    secs <- rep(NA_real_, length(num_vals))
+
+    excel_idx <- num_vals >= 20000 & num_vals <= 80000
+    secs[excel_idx] <- as.numeric(as.POSIXct(
+      num_vals[excel_idx] * 86400,
+      origin = "1899-12-30",
+      tz = tz
+    ))
+
+    unix_sec_idx <- num_vals > 1e8 & num_vals <= 1e11
+    unix_ms_idx <- num_vals > 1e11 & num_vals <= 1e14
+    unix_us_idx <- num_vals > 1e14 & num_vals <= 1e17
+    secs[unix_sec_idx] <- num_vals[unix_sec_idx]
+    secs[unix_ms_idx] <- num_vals[unix_ms_idx] / 1000
+    secs[unix_us_idx] <- num_vals[unix_us_idx] / 1e6
+
+    out[num_idx] <- as.POSIXct(secs, origin = "1970-01-01", tz = tz)
+  }
+
+  text_idx <- is.na(out) & !is.na(x_chr)
+  if (any(text_idx)) {
+    out[text_idx] <- suppressWarnings(as.POSIXct(
+      x_chr[text_idx],
+      tz = tz,
+      tryFormats = c(
+        "%Y-%m-%d %H:%M:%S",
+        "%Y-%m-%d %H:%M",
+        "%Y-%m-%d",
+        "%m/%d/%Y %H:%M:%S",
+        "%m/%d/%Y %H:%M",
+        "%m/%d/%Y"
+      )
+    ))
+  }
+
+  return(out)
 }
 
 standardize_master_datetime_columns <- function(df, column_names) {
